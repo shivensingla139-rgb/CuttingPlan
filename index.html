@@ -554,26 +554,20 @@
   <button class="tab" role="tab" data-panel="schedule" aria-selected="false">
     <span class="tab-num">02</span><span class="tab-label display" style="font-style:italic;">Schedule</span>
   </button>
-  <button class="tab" role="tab" data-panel="monday" aria-selected="false">
-    <span class="tab-num">03</span><span class="tab-label display" style="font-style:italic;">Mon &middot; Strength A</span>
+  <button class="tab" role="tab" data-panel="strength" aria-selected="false">
+    <span class="tab-num">03</span><span class="tab-label display" style="font-style:italic;">Mon &middot; Thu &middot; Sat</span>
   </button>
-  <button class="tab" role="tab" data-panel="tuesday" aria-selected="false">
-    <span class="tab-num">04</span><span class="tab-label display" style="font-style:italic;">Tue &middot; Cardio</span>
+  <button class="tab" role="tab" data-panel="cardio" aria-selected="false">
+    <span class="tab-num">04</span><span class="tab-label display" style="font-style:italic;">Tue &middot; Fri &middot; Cardio</span>
   </button>
-  <button class="tab" role="tab" data-panel="thursday" aria-selected="false">
-    <span class="tab-num">05</span><span class="tab-label display" style="font-style:italic;">Thu &middot; Strength B</span>
-  </button>
-  <button class="tab" role="tab" data-panel="friday" aria-selected="false">
-    <span class="tab-num">06</span><span class="tab-label display" style="font-style:italic;">Fri &middot; Cardio</span>
-  </button>
-  <button class="tab" role="tab" data-panel="progression" aria-selected="false">
-    <span class="tab-num">07</span><span class="tab-label display" style="font-style:italic;">Progression</span>
+  <button class="tab" role="tab" data-panel="rest" aria-selected="false">
+    <span class="tab-num">05</span><span class="tab-label display" style="font-style:italic;">Wed &middot; Sun &middot; Rest</span>
   </button>
   <button class="tab" role="tab" data-panel="notes" aria-selected="false">
-    <span class="tab-num">08</span><span class="tab-label display" style="font-style:italic;">Notes</span>
+    <span class="tab-num">06</span><span class="tab-label display" style="font-style:italic;">Notes</span>
   </button>
   <button class="tab" role="tab" data-panel="progress" aria-selected="false">
-    <span class="tab-num">09</span><span class="tab-label display" style="font-style:italic;">Progress</span>
+    <span class="tab-num">07</span><span class="tab-label display" style="font-style:italic;">Progress</span>
   </button>
 </nav>
 
@@ -586,9 +580,19 @@
     <p class="panel-meta">What it actually takes to come off 15 lb in 8 weeks</p>
 
     <div class="block">
-      <p class="copy">W-C-R-W-C-W-R. Estimated burn is roughly <strong><span id="statMaintenance">360</span> kcal/day</strong>. Hitting your goal needs a deficit of about <strong><span id="statDeficit">938</span> kcal/day</strong> &mdash; aim to eat near <strong><span id="statTargetIntake">1,596</span> kcal/day</strong>, with most of that gap coming from food, not the workouts below.</p>
+      <p class="copy">Estimated maintenance is roughly <strong><span id="statMaintenance">2,534</span> kcal/day</strong>. Hitting your goal needs a deficit of about <strong><span id="statDeficit">938</span> kcal/day</strong> &mdash; aim to eat near <strong><span id="statTargetIntake">1,596</span> kcal/day</strong>, with most of that gap coming from food, not the workouts below.</p>
       <p class="copy" id="paceNote">This pace sits above the usual 1&ndash;2 lb/week guideline &mdash; workable, but prioritize recovery.</p>
       <p class="copy">Keep protein around <strong><span id="statProtein">153</span> g/day</strong>, sleep 7&ndash;9 hours, and check in with a doctor before you start.</p>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Rules &mdash; every strength day</h3>
+      <ul class="tips">
+        <li>Rest 30&ndash;40 sec between sets &mdash; keep moving, don&rsquo;t sit down between exercises.</li>
+        <li>Weight progression each set: <strong>10 lb &rarr; 12 lb &rarr; 14 lb</strong> (unless otherwise noted).</li>
+        <li>Total strength session time: <strong>~35&ndash;45 minutes</strong>.</li>
+        <li>Calorie burn per strength session: <strong>~300&ndash;450 kcal</strong> depending on rest time and intensity.</li>
+      </ul>
     </div>
 
     <div class="block">
@@ -596,19 +600,13 @@
       <table>
         <thead><tr><th>Target / dumbbell</th><th>Plate combo</th></tr></thead>
         <tbody>
-          <tr><td>~5 lb</td><td>2.2 + 3.3 lb plate (or bar + two 2.2 lb)</td></tr>
-          <tr><td>~8 lb</td><td>3.3 + 4.4 lb plate</td></tr>
-          <tr><td>~10&ndash;12 lb</td><td>one each: 2.2 + 3.3 + 4.4 lb</td></tr>
-          <tr><td>~15 lb</td><td>two 4.4 lb + one 3.3 lb</td></tr>
-          <tr><td>~18&ndash;20 lb (near max)</td><td>most/all plates loaded on one side</td></tr>
+          <tr><td>~5&ndash;8 lb</td><td>2.2 + 3.3 lb plate (or bar + two 2.2 lb)</td></tr>
+          <tr><td>~10 lb</td><td>3.3 + 3.3 + 3.4 lb plates</td></tr>
+          <tr><td>~12 lb</td><td>3.3 + 4.4 + 4.3 lb plates</td></tr>
+          <tr><td>~14 lb</td><td>3.3 + 4.4 + 6.3 lb plates</td></tr>
         </tbody>
       </table>
       <p class="copy" style="margin-top:14px;">Start light. Form first &mdash; add a plate next week, not this set.</p>
-    </div>
-
-    <div class="block">
-      <h3 class="block-title display">Warm-up &mdash; every workout day</h3>
-      <p class="copy">Arm circles &times;10 each direction &middot; leg swings &times;10/leg &middot; bodyweight squats &times;10 &middot; march in place 1 min. <span class="pill">5 min &middot; ~25 kcal</span></p>
     </div>
   </section>
 
@@ -616,141 +614,200 @@
   <section class="panel" data-panel="schedule">
     <p class="panel-eyebrow">02 / The Week</p>
     <h2 class="panel-title display">Schedule</h2>
-    <p class="panel-meta">4 cut days, 3 rest days &mdash; the hatched pieces don't get touched</p>
+    <p class="panel-meta">3 strength days, 2 cardio days, 2 full rest days</p>
 
     <div class="week-grid">
-      <div class="day-card"><div class="day-name display">Mon</div><div class="day-tag">STRENGTH A</div></div>
-      <div class="day-card"><div class="day-name display">Tue</div><div class="day-tag">CARDIO &middot; STEADY</div></div>
+      <div class="day-card"><div class="day-name display">Mon</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
+      <div class="day-card"><div class="day-name display">Tue</div><div class="day-tag">CARDIO &mdash; JOG</div></div>
       <div class="day-card rest"><div class="day-name display">Wed</div><div class="day-tag">REST</div></div>
-      <div class="day-card"><div class="day-name display">Thu</div><div class="day-tag">STRENGTH B</div></div>
-      <div class="day-card"><div class="day-name display">Fri</div><div class="day-tag">CARDIO &middot; INTERVALS</div></div>
-      <div class="day-card rest"><div class="day-name display">Sat</div><div class="day-tag">REST</div></div>
+      <div class="day-card"><div class="day-name display">Thu</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
+      <div class="day-card"><div class="day-name display">Fri</div><div class="day-tag">CARDIO &mdash; JOG</div></div>
+      <div class="day-card"><div class="day-name display">Sat</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
       <div class="day-card rest"><div class="day-name display">Sun</div><div class="day-tag">REST</div></div>
     </div>
 
     <div class="block" style="margin-top:28px;">
-      <p class="copy">Rest days aren't filler &mdash; they're recovery, so the cut days actually land. Skipping them tends to cost more than it saves.</p>
+      <p class="copy">Rest days aren&rsquo;t filler &mdash; they&rsquo;re recovery, so the cut days actually land. Keep moving between exercises on strength days, but let your body fully recharge on Wednesday and Sunday.</p>
     </div>
   </section>
 
-  <!-- 03 MONDAY -->
-  <section class="panel" data-panel="monday">
-    <p class="panel-eyebrow">03 / Monday</p>
-    <h2 class="panel-title display">Strength</h2>
-    <p class="panel-meta">~45 min total &middot; ~300&ndash;400 kcal</p>
+  <!-- 03 STRENGTH — MON / THU / SAT -->
+  <section class="panel" data-panel="strength">
+    <p class="panel-eyebrow">03 / Monday &middot; Thursday &middot; Saturday</p>
+    <h2 class="panel-title display">Strength &mdash; Arms &amp; Shoulders</h2>
+    <p class="panel-meta">~35&ndash;45 min total &middot; ~300&ndash;450 kcal &middot; rest 30&ndash;40 sec between sets &middot; move continuously</p>
 
-    <table>
-      <thead><tr><th>Exercise</th><th class="num">Sets &times; Reps</th><th>Weight</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
-      <tbody>
-        <tr><td>Dumbell Curls</td><td class="num">3 &times; 10</td><td>10&ndash;14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Hammer Curls</td><td class="num">3 &times; 10</td><td>10&ndash;14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Overhead Triceps Extension</td><td class="num">3 &times; 10</td><td>10&ndash;14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Triceps Kickback</td><td class="num">3 &times; 10</td><td>10&ndash;12 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Dumbbell Shoulder Press</td><td class="num">3 &times; 10</td><td>10&ndash;14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Lateral Raises</td><td class="num">3 &times; 12</td><td>10&ndash;14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-        <tr><td>Finisher (Curls, Shoulder Press, Lateral Raises, Triceps Kickbacks)</td><td class="num">1 &times; Each</td><td>14 lbs</td><td class="num">30 sec</td><td class="num">~60</td></tr>
-      </tbody>
-    </table>
-    <p class="copy" style="margin-top:16px;">Rest ~45&ndash;30 sec between sets</p>
+    <div class="block">
+      <h3 class="block-title display">Warm-Up <span class="pill">5 min &middot; ~25 kcal</span></h3>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th class="num">Weight</th><th class="num">Reps</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Light curls</td><td class="num">5&ndash;8 lb</td><td class="num">15</td></tr>
+          <tr><td>2</td><td>Light shoulder press</td><td class="num">5&ndash;8 lb</td><td class="num">12</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Block 1 &mdash; Biceps</h3>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>3</td><td>Dumbbell Curls</td>
+            <td class="num">10 lb &times; 10</td>
+            <td class="num">12 lb &times; 10</td>
+            <td class="num">14 lb &times; 8&ndash;10</td>
+            <td class="num">30 sec</td>
+          </tr>
+          <tr>
+            <td>4</td><td>Hammer Curls</td>
+            <td class="num">10 lb &times; 10</td>
+            <td class="num">12 lb &times; 10</td>
+            <td class="num">14 lb &times; 8&ndash;10</td>
+            <td class="num">30&ndash;40 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Block 2 &mdash; Triceps</h3>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>5</td><td>Overhead Triceps Extension</td>
+            <td class="num">10 lb &times; 10</td>
+            <td class="num">12 lb &times; 10</td>
+            <td class="num">14 lb &times; 10</td>
+            <td class="num">30 sec</td>
+          </tr>
+          <tr>
+            <td>6</td><td>Triceps Kickbacks</td>
+            <td class="num">10 lb &times; 10</td>
+            <td class="num">10&ndash;12 lb &times; 10</td>
+            <td class="num">12 lb &times; 10</td>
+            <td class="num">30 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Block 3 &mdash; Shoulders</h3>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>7</td><td>Dumbbell Shoulder Press</td>
+            <td class="num">10 lb &times; 10</td>
+            <td class="num">12 lb &times; 10</td>
+            <td class="num">14 lb &times; 8&ndash;10</td>
+            <td class="num">30&ndash;40 sec</td>
+          </tr>
+          <tr>
+            <td>8</td><td>Lateral Raises <em style="font-size:11px;">&mdash; keep strict, no swinging</em></td>
+            <td class="num">8&ndash;10 lb &times; 12</td>
+            <td class="num">8&ndash;10 lb &times; 12</td>
+            <td class="num">10 lb &times; 12</td>
+            <td class="num">&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Finisher &mdash; 3 Rounds, No Long Rest <span class="pill">5&ndash;8 min</span></h3>
+      <p class="copy">This is where the extra calories come from. Run all four moves back-to-back, then rest only 30&ndash;45 sec before repeating.</p>
+      <table>
+        <thead><tr><th>Exercise</th><th class="num">Reps</th><th class="num">Weight</th></tr></thead>
+        <tbody>
+          <tr><td>Curls</td><td class="num">12</td><td class="num">10&ndash;12 lb</td></tr>
+          <tr><td>Shoulder Press</td><td class="num">10</td><td class="num">10 lb</td></tr>
+          <tr><td>Lateral Raises</td><td class="num">15</td><td class="num">8&ndash;10 lb</td></tr>
+          <tr><td>Triceps Kickbacks</td><td class="num">10</td><td class="num">10 lb</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Session Breakdown</h3>
+      <table>
+        <thead><tr><th>Segment</th><th class="num">Time</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td class="num">5 min</td></tr>
+          <tr><td>Main workout (Blocks 1&ndash;3)</td><td class="num">25&ndash;30 min</td></tr>
+          <tr><td>Finisher</td><td class="num">5&ndash;8 min</td></tr>
+          <tr><td><strong>Total</strong></td><td class="num"><strong>~35&ndash;45 min</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
-  <!-- 04 TUESDAY -->
-  <section class="panel" data-panel="tuesday">
-    <p class="panel-eyebrow">04 / Tuesday</p>
-    <h2 class="panel-title display">Cardio &mdash; Steady</h2>
-    <p class="panel-meta">30&ndash;40 min &middot; ~190&ndash;250 kcal</p>
-
-    <table>
-      <thead><tr><th>Segment</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
-      <tbody>
-        <tr><td>Easy warm-up pace</td><td class="num">5 min</td><td class="num">~25</td></tr>
-        <tr><td>Brisk continuous walk, talking is a little harder than usual</td><td class="num">25&ndash;35 min</td><td class="num">~165&ndash;225</td></tr>
-      </tbody>
-    </table>
-    <p class="copy" style="margin-top:16px;">Use your open space, loop it or go out-and-back. Optional: a light 2&ndash;3 lb dumbbell in each hand for extra arm-swing burn &mdash; not required.</p>
-  </section>
-
-  <!-- 05 THURSDAY -->
-  <section class="panel" data-panel="thursday">
-    <p class="panel-eyebrow">05 / Thursday</p>
-    <h2 class="panel-title display">Strength B</h2>
-    <p class="panel-meta">~45 min total &middot; ~260&ndash;290 kcal</p>
-
-    <table>
-      <thead><tr><th>Exercise</th><th class="num">Sets &times; Reps</th><th>Weight</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
-      <tbody>
-        <tr><td>Sumo squat (one dumbbell, both hands)</td><td class="num">3 &times; 12</td><td>12&ndash;15 lb total</td><td class="num">4 min</td><td class="num">~30</td></tr>
-        <tr><td>Single-arm row</td><td class="num">3 &times; 12 / arm</td><td>8&ndash;10 lb</td><td class="num">4 min</td><td class="num">~25</td></tr>
-        <tr><td>Overhead triceps extension</td><td class="num">3 &times; 12</td><td>8&ndash;10 lb total</td><td class="num">3 min</td><td class="num">~20</td></tr>
-        <tr><td>Deadlift-to-high-pull</td><td class="num">3 &times; 10</td><td>8&ndash;10 lb / hand</td><td class="num">4 min</td><td class="num">~30</td></tr>
-        <tr><td>Lateral lunge</td><td class="num">3 &times; 10 / leg</td><td>5&ndash;8 lb / hand</td><td class="num">4 min</td><td class="num">~30</td></tr>
-        <tr><td>Hammer curl</td><td class="num">3 &times; 12</td><td>6&ndash;8 lb / hand</td><td class="num">3 min</td><td class="num">~20</td></tr>
-        <tr><td>Side plank</td><td class="num">2 &times; 20 sec / side</td><td>bodyweight</td><td class="num">2 min</td><td class="num">~10</td></tr>
-        <tr><td>Cool-down stretch</td><td class="num">&mdash;</td><td>&mdash;</td><td class="num">5 min</td><td class="num">~20</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- 06 FRIDAY -->
-  <section class="panel" data-panel="friday">
-    <p class="panel-eyebrow">06 / Friday</p>
-    <h2 class="panel-title display">Cardio &mdash; Intervals</h2>
-    <p class="panel-meta">~35&ndash;40 min &middot; ~220&ndash;280 kcal</p>
+  <!-- 04 CARDIO — TUE / FRI -->
+  <section class="panel" data-panel="cardio">
+    <p class="panel-eyebrow">04 / Tuesday &middot; Friday</p>
+    <h2 class="panel-title display">Cardio &mdash; Jog</h2>
+    <p class="panel-meta">~35 min total &middot; ~<span id="cardioKcalDisplay">270&ndash;400</span> kcal</p>
 
     <table>
       <thead><tr><th>Segment</th><th>Pace</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
       <tbody>
-        <tr><td>Warm-up</td><td>Easy</td><td class="num">5 min</td><td class="num">~25</td></tr>
-        <tr><td>Intervals: 6&ndash;8 rounds of 2 min brisk/fast + 1 min easy</td><td>Alternating</td><td class="num">18&ndash;24 min</td><td class="num">~150&ndash;200</td></tr>
-        <tr><td>Cool-down</td><td>Easy</td><td class="num">5 min</td><td class="num">~25</td></tr>
+        <tr><td>Easy warm-up walk</td><td>Easy pace</td><td class="num">5 min</td><td class="num" id="walkKcal">~30</td></tr>
+        <tr><td>Continuous jog</td><td>Steady jog</td><td class="num">30 min</td><td class="num" id="jogKcal">~240&ndash;370</td></tr>
       </tbody>
     </table>
-    <p class="copy" style="margin-top:16px;">Intervals burn more per minute than steady walking and build cardio fitness faster &mdash; useful leverage for a beginner.</p>
+    <p class="copy" style="margin-top:16px;">Calorie estimates are personalised based on your settings (weight &amp; age). Jog at a pace where you can still speak short sentences &mdash; slow is fine, continuous effort is what counts.</p>
+    <p class="copy"><em>Calorie burn shown above updates when you change your settings via the gear icon.</em></p>
   </section>
 
-  <!-- 07 PROGRESSION -->
-  <section class="panel" data-panel="progression">
-    <p class="panel-eyebrow">07 / Eight Weeks</p>
-    <h2 class="panel-title display">Progression</h2>
-    <p class="panel-meta">How the load moves up as you go</p>
+  <!-- 05 REST — WED / SUN -->
+  <section class="panel" data-panel="rest">
+    <p class="panel-eyebrow">05 / Wednesday &middot; Sunday</p>
+    <h2 class="panel-title display">Rest</h2>
+    <p class="panel-meta">Full recovery &mdash; no structured exercise</p>
 
-    <table>
-      <thead><tr><th>Weeks</th><th>Strength days</th><th>Cardio days</th></tr></thead>
-      <tbody>
-        <tr><td>1&ndash;2</td><td>Lower end of weight ranges, clean form, 3 sets</td><td>Steady walk 30 min, intervals 30 min total</td></tr>
-        <tr><td>3&ndash;4</td><td>Add 2&ndash;3 lb per exercise where manageable</td><td>Add 5 min to each walk</td></tr>
-        <tr><td>5&ndash;6</td><td>4th set on squats + deadlifts, or reps to 15</td><td>Pick up pace, or find a slope if your space has one</td></tr>
-        <tr><td>7&ndash;8</td><td>Push toward upper end of weight ranges</td><td>Walks at 40&ndash;45 min; short jog intervals if comfortable</td></tr>
-      </tbody>
-    </table>
+    <div class="block">
+      <p class="copy">Rest days are not filler &mdash; they&rsquo;re when your muscles repair and your body actually changes. The strength work only sticks if you give it time to.</p>
+    </div>
+
+    <ul class="tips">
+      <li>Light stretching or a slow leisure walk is fine &mdash; nothing structured or intense.</li>
+      <li>Prioritise 7&ndash;9 hours of sleep on rest nights; this is when most recovery hormones peak.</li>
+      <li>Stay hydrated and hit your protein target even on rest days &mdash; muscle synthesis doesn&rsquo;t pause.</li>
+    </ul>
+
+    <div class="stamp">Full rest &mdash; earn tomorrow</div>
   </section>
 
-  <!-- 08 NOTES -->
+  <!-- 06 NOTES -->
   <section class="panel" data-panel="notes">
-    <p class="panel-eyebrow">08 / Before You Start</p>
+    <p class="panel-eyebrow">06 / Before You Start</p>
     <h2 class="panel-title display">Notes</h2>
     <p class="panel-meta">Weekly totals and the things worth remembering</p>
 
     <div class="totals-row">
-      <div class="total-card"><span class="total-num display" id="statStrengthKcal">~560</span><span class="total-label">kcal / week &middot; strength</span></div>
-      <div class="total-card"><span class="total-num display" id="statCardioKcal">~470</span><span class="total-label">kcal / week &middot; cardio</span></div>
-      <div class="total-card"><span class="total-num display" id="statTotalKcal">~1,030</span><span class="total-label">kcal / week &middot; total burn</span></div>
+      <div class="total-card"><span class="total-num display" id="statStrengthKcal">~1,050</span><span class="total-label">kcal / week &middot; strength (3&times;)</span></div>
+      <div class="total-card"><span class="total-num display" id="statCardioKcal">~600</span><span class="total-label">kcal / week &middot; cardio (2&times;)</span></div>
+      <div class="total-card"><span class="total-num display" id="statTotalKcal">~1,650</span><span class="total-label">kcal / week &middot; total burn</span></div>
     </div>
 
-    <p class="copy">That's a real contribution, but a fraction of the ~6,500+ kcal/week deficit the 1.9 lb/week pace calls for. The rest comes from how you eat &mdash; a moderate, consistent reduction, not an extreme one.</p>
+    <p class="copy">That&rsquo;s a real contribution, but the bulk of your deficit still has to come from diet &mdash; a moderate, consistent reduction, not an extreme one. Strength days alone can hit 300&ndash;450 kcal; cardio days add another 270&ndash;400 each.</p>
 
     <ul class="tips">
-      <li>If a weight breaks your form before the set is done, drop down &mdash; no shame in it as a beginner.</li>
-      <li>Stop and rest on sharp pain. Normal muscle fatigue is fine; pain isn't.</li>
+      <li>If a weight breaks your form before the set is done, drop down &mdash; no shame in it.</li>
+      <li>On lateral raises: keep them strict. No swinging, no momentum &mdash; these are easy to cheat and easy to hurt.</li>
+      <li>Stop and rest on sharp pain. Normal muscle fatigue is fine; pain isn&rsquo;t.</li>
       <li>Hydrate, and aim for 7&ndash;9 hours of sleep &mdash; both matter for fat loss and recovery.</li>
     </ul>
 
     <div class="stamp">Not medical advice &mdash; consult a physician</div>
   </section>
 
-  <!-- 09 PROGRESS -->
+  <!-- 07 PROGRESS -->
   <section class="panel" data-panel="progress">
-    <p class="panel-eyebrow">09 / Track It</p>
+    <p class="panel-eyebrow">07 / Track It</p>
     <h2 class="panel-title display">Progress</h2>
     <p class="panel-meta">Upload a weight log, watch the trend against the goal line</p>
 
@@ -847,12 +904,37 @@
     document.getElementById('heroSub').innerHTML =
       `${settings.age} / ${settings.heightFt}&prime;${settings.heightIn}&Prime; / ${settings.weightLb} lb &mdash; goal: &minus;${settings.goalLb} lb in ${settings.goalWeeks} weeks`;
 
-    const scale = settings.weightLb / DEFAULT_SETTINGS.weightLb;
-    const strengthKcal = Math.round(560 * scale);
-    const cardioKcal = Math.round(470 * scale);
-    document.getElementById('statStrengthKcal').textContent = '~' + strengthKcal.toLocaleString();
-    document.getElementById('statCardioKcal').textContent = '~' + cardioKcal.toLocaleString();
-    document.getElementById('statTotalKcal').textContent = '~' + (strengthKcal + cardioKcal).toLocaleString();
+    // Calorie calculations
+    const kg = settings.weightLb * 0.453592;
+    // Strength: ~3.5 METs for dumbbell circuit, 40 min per session, 3 sessions/week
+    const strengthMET = 3.5;
+    const strengthMin = 40;
+    const strengthKcalPerSession = Math.round(strengthMET * kg * (strengthMin / 60));
+    const strengthKcalPerSessionHigh = Math.round(4.5 * kg * (strengthMin / 60));
+    const strengthKcalWeekly = strengthKcalPerSession * 3;
+
+    // Cardio: walk 5 min (~2.5 MET) + jog 30 min (~7 MET) per session, 2 sessions/week
+    const walkMET = 2.5;
+    const jogMET = 7.0;
+    const walkKcal = Math.round(walkMET * kg * (5 / 60));
+    const jogKcalLow = Math.round(jogMET * kg * (30 / 60));
+    const jogKcalHigh = Math.round(8.5 * kg * (30 / 60));
+    const cardioKcalPerSession = walkKcal + jogKcalLow;
+    const cardioKcalWeekly = cardioKcalPerSession * 2;
+
+    const totalKcal = strengthKcalWeekly + cardioKcalWeekly;
+
+    document.getElementById('statStrengthKcal').textContent = '~' + strengthKcalWeekly.toLocaleString();
+    document.getElementById('statCardioKcal').textContent = '~' + cardioKcalWeekly.toLocaleString();
+    document.getElementById('statTotalKcal').textContent = '~' + totalKcal.toLocaleString();
+
+    // Update cardio tab display
+    const cardioDisplay = document.getElementById('cardioKcalDisplay');
+    if (cardioDisplay) cardioDisplay.textContent = walkKcal + jogKcalLow + '\u2013' + (walkKcal + jogKcalHigh);
+    const walkEl = document.getElementById('walkKcal');
+    if (walkEl) walkEl.textContent = '~' + walkKcal;
+    const jogEl = document.getElementById('jogKcal');
+    if (jogEl) jogEl.textContent = '~' + jogKcalLow + '\u2013' + jogKcalHigh;
 
     if (weightRows.length) renderChart();
   }
