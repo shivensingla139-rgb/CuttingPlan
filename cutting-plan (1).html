@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eight Week Cutting Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mat: #1E4D3C;
+    --mat-line: #2C5F4B;
+    --mat-line-bold: #3D7A60;
+    --ruler: #E8C547;
+    --paper: #F4EFE3;
+    --ink: #1B1B17;
+    --cut: #D9622B;
+    --paper-dim: #e8e1d0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{margin:0;padding:0;}
+
+  body{
+    background-color:var(--mat);
+    background-image:
+      repeating-linear-gradient(to right, var(--mat-line) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(to bottom, var(--mat-line) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(to right, var(--mat-line-bold) 0 1px, transparent 1px 120px),
+      repeating-linear-gradient(to bottom, var(--mat-line-bold) 0 1px, transparent 1px 120px);
+    color:var(--ink);
+    font-family:'Courier Prime', 'Courier New', monospace;
+    min-height:100vh;
+    padding:0 0 80px;
+  }
+
+  .display{
+    font-family:'Fraunces', serif;
+  }
+
+  a{color:var(--cut);}
+
+  /* ---------- Top ruler ---------- */
+  .ruler-top{
+    display:flex;
+    justify-content:space-between;
+    max-width:1180px;
+    margin:0 auto;
+    padding:14px 24px 6px;
+    color:var(--ruler);
+    font-size:11px;
+    letter-spacing:0.04em;
+  }
+  .ruler-top span{position:relative;}
+  .ruler-top span::after{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:50%;
+    width:1px;
+    height:7px;
+    background:var(--ruler);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 24px 36px;
+  }
+  .hero-eyebrow{
+    color:var(--ruler);
+    font-size:12px;
+    letter-spacing:0.14em;
+    margin:0 0 14px;
+    text-transform:uppercase;
+  }
+  .hero-title{
+    color:var(--paper);
+    font-size:clamp(40px,7vw,84px);
+    font-weight:600;
+    line-height:0.98;
+    margin:0 0 16px;
+  }
+  .hero-title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--ruler);
+  }
+  .hero-sub{
+    color:var(--paper-dim);
+    font-size:14px;
+    letter-spacing:0.03em;
+    margin:0;
+    max-width:520px;
+  }
+
+  /* ---------- Cut line divider ---------- */
+  .cutline{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .cutline .scissors{
+    flex:none;
+    color:var(--cut);
+  }
+  .cutline .dash{
+    flex:1;
+    border-top:1.5px dashed var(--mat-line-bold);
+  }
+
+  /* ---------- Tabs ---------- */
+  .tabs{
+    max-width:1180px;
+    margin:0 auto;
+    padding:22px 24px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tab{
+    font-family:'Courier Prime', monospace;
+    background:var(--paper);
+    color:var(--ink);
+    border:none;
+    border-bottom:4px solid transparent;
+    padding:10px 14px 8px;
+    cursor:pointer;
+    text-align:left;
+    min-width:118px;
+    position:relative;
+    transition:transform 0.15s ease, border-color 0.15s ease;
+  }
+  .tab .tab-num{
+    display:block;
+    color:var(--cut);
+    font-size:11px;
+    letter-spacing:0.08em;
+    margin-bottom:4px;
+  }
+  .tab .tab-label{
+    display:block;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    line-height:1.25;
+  }
+  .tab::before{
+    content:"";
+    position:absolute;
+    top:-6px;
+    left:50%;
+    transform:translateX(-50%);
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--mat-line-bold);
+    transition:background 0.15s ease;
+  }
+  .tab:hover{transform:translateY(-2px);}
+  .tab[aria-selected="true"]{
+    border-bottom-color:var(--cut);
+    box-shadow:0 8px 16px rgba(0,0,0,0.18);
+  }
+  .tab[aria-selected="true"]::before{background:var(--cut);}
+  .tab:focus-visible{outline:2px solid var(--ruler); outline-offset:2px;}
+
+  /* ---------- Panels ---------- */
+  .panels{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 24px 0;
+  }
+  .panel{
+    display:none;
+    background:var(--paper);
+    padding:34px clamp(20px,4vw,48px) 42px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  }
+  .panel[data-active="true"]{display:block;}
+
+  .panel-eyebrow{
+    color:var(--cut);
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    margin:0 0 6px;
+  }
+  .panel-title{
+    font-size:clamp(26px,3.6vw,42px);
+    font-style:italic;
+    font-weight:500;
+    margin:0 0 6px;
+  }
+  .panel-meta{
+    font-size:12.5px;
+    color:#5b554a;
+    margin:0 0 28px;
+    letter-spacing:0.02em;
+  }
+
+  .block{margin-bottom:30px;}
+  .block:last-child{margin-bottom:0;}
+  .block-title{
+    font-style:italic;
+    font-size:19px;
+    margin:0 0 12px;
+  }
+  p.copy{font-size:13.5px; line-height:1.65; margin:0 0 10px; max-width:680px;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+  }
+  th{
+    text-align:left;
+    color:var(--cut);
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:10.5px;
+    padding:0 10px 10px 0;
+    border-bottom:1.5px solid var(--ink);
+  }
+  td{
+    padding:10px 10px 10px 0;
+    border-bottom:1.5px dashed var(--mat-line-bold);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:1.5px solid var(--ink);}
+  td.num, th.num{white-space:nowrap;}
+
+  .pill{
+    display:inline-block;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    padding:2px 8px;
+    border:1px solid var(--ink);
+  }
+
+  /* ---------- Schedule grid ---------- */
+  .week-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+  }
+  .day-card{
+    border:1px solid var(--ink);
+    padding:14px 10px;
+    min-height:140px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .day-card .day-name{
+    font-style:italic;
+    font-size:16px;
+  }
+  .day-card .day-tag{
+    font-size:11px;
+    letter-spacing:0.03em;
+    margin-top:10px;
+  }
+  .day-card.rest{
+    background-image:repeating-linear-gradient(45deg, var(--mat-line) 0 2px, transparent 2px 12px);
+    color:#5b554a;
+  }
+  .day-card.rest .day-tag{font-style:italic;}
+
+  /* ---------- Weekly totals ---------- */
+  .totals-row{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+  }
+  .total-card{
+    border:1px solid var(--ink);
+    padding:16px 18px;
+    min-width:160px;
+  }
+  .total-card .total-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:30px;
+    display:block;
+  }
+  .total-card .total-label{
+    font-size:11px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:#5b554a;
+  }
+
+  ul.tips{margin:0; padding:0; list-style:none; max-width:680px;}
+  ul.tips li{
+    font-size:13px;
+    line-height:1.55;
+    padding:9px 0;
+    border-bottom:1.5px dashed var(--mat-line-bold);
+  }
+  ul.tips li:last-child{border-bottom:none;}
+
+  .stamp{
+    display:inline-block;
+    border:2px solid var(--cut);
+    color:var(--cut);
+    padding:10px 16px;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    transform:rotate(-3deg);
+    margin-top:24px;
+  }
+
+  /* ---------- Settings cog ---------- */
+  .gear-btn{
+    position:fixed;
+    top:16px;
+    right:16px;
+    z-index:60;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,0.3);
+  }
+  .gear-btn svg{transition:transform 0.4s ease;}
+  .gear-btn:hover svg{transform:rotate(35deg);}
+  .gear-btn.spinning svg{animation:gearspin 6s linear infinite;}
+  .gear-btn:focus-visible{outline:2px solid var(--ruler); outline-offset:2px;}
+  @keyframes gearspin{to{transform:rotate(360deg);}}
+
+  /* ---------- Settings drawer ---------- */
+  .drawer-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(10,14,12,0.55);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.25s ease;
+    z-index:55;
+  }
+  .drawer-overlay.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed;
+    top:0;
+    right:0;
+    height:100vh;
+    width:340px;
+    max-width:90vw;
+    background:var(--paper);
+    z-index:58;
+    transform:translateX(100%);
+    transition:transform 0.35s ease;
+    box-shadow:-18px 0 40px rgba(0,0,0,0.35);
+    overflow-y:auto;
+    padding:24px 26px 40px;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:4px;
+  }
+  .drawer-head h3{font-style:italic; font-size:22px; margin:0;}
+  .drawer-close{
+    background:none;
+    border:none;
+    font-family:'Courier Prime', monospace;
+    font-size:13px;
+    cursor:pointer;
+    color:var(--ink);
+    padding:4px;
+  }
+  .drawer-sub{font-size:11.5px; color:#5b554a; margin:0 0 22px;}
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--cut);
+    margin-bottom:6px;
+  }
+  .field-row{display:flex; gap:10px;}
+  .field-row .field{flex:1;}
+  .field input, .field select{
+    width:100%;
+    font-family:'Courier Prime', monospace;
+    font-size:13.5px;
+    color:var(--ink);
+    background:transparent;
+    border:none;
+    border-bottom:1.5px dashed var(--mat-line-bold);
+    padding:6px 2px;
+  }
+  .field input:focus, .field select:focus{outline:none; border-bottom-color:var(--cut);}
+  .drawer-divider{border-top:1px dashed var(--mat-line-bold); margin:18px 0;}
+  .drawer-actions{display:flex; gap:10px; margin-top:24px;}
+
+  .btn{
+    font-family:'Courier Prime', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 16px;
+    cursor:pointer;
+  }
+  .btn:hover{background:var(--cut); border-color:var(--cut);}
+  .btn.ghost{background:transparent; color:var(--ink);}
+  .btn.ghost:hover{background:transparent; color:var(--cut); border-color:var(--cut);}
+  .btn.full{width:100%;}
+
+  /* ---------- Progress tab ---------- */
+  .upload-box{
+    border:1.5px dashed var(--mat-line-bold);
+    padding:24px;
+    margin-bottom:20px;
+  }
+  .upload-box .copy.small{font-size:12px; margin:12px 0 0; color:#5b554a;}
+  .file-name{font-size:12px; margin-left:12px; color:#5b554a;}
+  .error-msg{
+    border:1.5px solid var(--cut);
+    color:var(--cut);
+    padding:12px 14px;
+    font-size:12.5px;
+    margin-bottom:20px;
+  }
+  .chart-wrap{
+    border:1px solid var(--ink);
+    padding:18px;
+    margin-top:6px;
+  }
+
+  @media (max-width: 720px){
+    .ruler-top span:nth-child(odd){display:none;}
+    .week-grid{grid-template-columns:repeat(2,1fr);}
+    .tab{min-width:100px;}
+    .field-row{flex-direction:column; gap:0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .tab{transition:none;}
+    .tab:hover{transform:none;}
+    .gear-btn.spinning svg{animation:none;}
+    .gear-btn svg, .drawer, .drawer-overlay{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<button class="gear-btn" id="gearBtn" aria-haspopup="dialog" aria-expanded="false" aria-label="Open settings">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="12" cy="12" r="3.2"/>
+    <circle cx="12" cy="12" r="7.2"/>
+    <line x1="19.6" y1="12" x2="21.6" y2="12"/>
+    <line x1="17.37" y1="17.37" x2="18.79" y2="18.79"/>
+    <line x1="12" y1="19.6" x2="12" y2="21.6"/>
+    <line x1="6.63" y1="17.37" x2="5.21" y2="18.79"/>
+    <line x1="4.4" y1="12" x2="2.4" y2="12"/>
+    <line x1="6.63" y1="6.63" x2="5.21" y2="5.21"/>
+    <line x1="12" y1="4.4" x2="12" y2="2.4"/>
+    <line x1="17.37" y1="6.63" x2="18.79" y2="5.21"/>
+  </svg>
+</button>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-label="Settings" aria-hidden="true">
+  <div class="drawer-head">
+    <h3 class="display">Variables</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Close settings">CLOSE &times;</button>
+  </div>
+  <p class="drawer-sub">Change these and the math on Overview &amp; Notes recalculates.</p>
+
+  <div class="field">
+    <label for="inSex">Sex (for BMR formula)</label>
+    <select id="inSex">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+
+  <div class="field-row">
+    <div class="field"><label for="inAge">Age</label><input type="number" id="inAge" value="18" min="14" max="90"></div>
+    <div class="field"><label for="inWeight">Weight (lb)</label><input type="number" id="inWeight" value="180" min="60" max="500"></div>
+  </div>
+
+  <div class="field-row">
+    <div class="field"><label for="inFt">Height &mdash; ft</label><input type="number" id="inFt" value="5" min="3" max="8"></div>
+    <div class="field"><label for="inIn">Height &mdash; in</label><input type="number" id="inIn" value="10" min="0" max="11"></div>
+  </div>
+
+  <div class="field">
+    <label for="inActivity">Activity level</label>
+    <select id="inActivity">
+      <option value="sedentary">Sedentary &mdash; desk job, little exercise</option>
+      <option value="light" selected>Light &mdash; this plan, beginner</option>
+      <option value="moderate">Moderate &mdash; on your feet, active job</option>
+      <option value="active">Active &mdash; very physical day to day</option>
+    </select>
+  </div>
+
+  <div class="drawer-divider"></div>
+
+  <div class="field-row">
+    <div class="field"><label for="inGoalLb">Goal &mdash; lb to lose</label><input type="number" id="inGoalLb" value="15" min="1" max="100"></div>
+    <div class="field"><label for="inGoalWeeks">Goal &mdash; weeks</label><input type="number" id="inGoalWeeks" value="8" min="1" max="52"></div>
+  </div>
+
+  <div class="drawer-actions">
+    <button class="btn full" id="applySettings">Apply changes</button>
+  </div>
+  <button class="btn ghost full" id="resetSettings" style="margin-top:10px;">Reset to defaults</button>
+</aside>
+
+<div class="ruler-top" id="rulerTop"></div>
+
+<header class="hero">
+  <p class="hero-eyebrow">Self-Healing Training Mat &mdash; 44 lb Adjustable Set</p>
+  <h1 class="hero-title display">Eight<br><em>Week</em> Cutting Plan</h1>
+  <p class="hero-sub" id="heroSub">18 / 5&prime;10&Prime; / 180 lb &mdash; beginner &middot; goal: &minus;15 lb in 8 weeks</p>
+</header>
+
+<div class="cutline">
+  <svg class="scissors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+    <line x1="20" y1="4" x2="8.5" y2="15.5"/><line x1="20" y1="20" x2="8.5" y2="8.5"/>
+  </svg>
+  <div class="dash"></div>
+</div>
+
+<nav class="tabs" role="tablist" id="tabs">
+  <button class="tab" role="tab" data-panel="overview" aria-selected="true">
+    <span class="tab-num">01</span><span class="tab-label display" style="font-style:italic;">Overview</span>
+  </button>
+  <button class="tab" role="tab" data-panel="schedule" aria-selected="false">
+    <span class="tab-num">02</span><span class="tab-label display" style="font-style:italic;">Schedule</span>
+  </button>
+  <button class="tab" role="tab" data-panel="monday" aria-selected="false">
+    <span class="tab-num">03</span><span class="tab-label display" style="font-style:italic;">Mon &middot; Strength A</span>
+  </button>
+  <button class="tab" role="tab" data-panel="tuesday" aria-selected="false">
+    <span class="tab-num">04</span><span class="tab-label display" style="font-style:italic;">Tue &middot; Cardio</span>
+  </button>
+  <button class="tab" role="tab" data-panel="thursday" aria-selected="false">
+    <span class="tab-num">05</span><span class="tab-label display" style="font-style:italic;">Thu &middot; Strength B</span>
+  </button>
+  <button class="tab" role="tab" data-panel="friday" aria-selected="false">
+    <span class="tab-num">06</span><span class="tab-label display" style="font-style:italic;">Fri &middot; Cardio</span>
+  </button>
+  <button class="tab" role="tab" data-panel="progression" aria-selected="false">
+    <span class="tab-num">07</span><span class="tab-label display" style="font-style:italic;">Progression</span>
+  </button>
+  <button class="tab" role="tab" data-panel="notes" aria-selected="false">
+    <span class="tab-num">08</span><span class="tab-label display" style="font-style:italic;">Notes</span>
+  </button>
+  <button class="tab" role="tab" data-panel="progress" aria-selected="false">
+    <span class="tab-num">09</span><span class="tab-label display" style="font-style:italic;">Progress</span>
+  </button>
+</nav>
+
+<main class="panels">
+
+  <!-- 01 OVERVIEW -->
+  <section class="panel" data-panel="overview" data-active="true">
+    <p class="panel-eyebrow">01 / The Brief</p>
+    <h2 class="panel-title display">The Math</h2>
+    <p class="panel-meta">What it actually takes to come off 15 lb in 8 weeks</p>
+
+    <div class="block">
+      <p class="copy">Estimated maintenance is roughly <strong><span id="statMaintenance">2,534</span> kcal/day</strong>. Hitting your goal needs a deficit of about <strong><span id="statDeficit">938</span> kcal/day</strong> &mdash; aim to eat near <strong><span id="statTargetIntake">1,596</span> kcal/day</strong>, with most of that gap coming from food, not the workouts below.</p>
+      <p class="copy" id="paceNote">This pace sits above the usual 1&ndash;2 lb/week guideline &mdash; workable, but prioritize recovery.</p>
+      <p class="copy">Keep protein around <strong><span id="statProtein">153</span> g/day</strong>, sleep 7&ndash;9 hours, and check in with a doctor before you start.</p>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Weight guide &mdash; build your load</h3>
+      <table>
+        <thead><tr><th>Target / dumbbell</th><th>Plate combo</th></tr></thead>
+        <tbody>
+          <tr><td>~5 lb</td><td>2.2 + 3.3 lb plate (or bar + two 2.2 lb)</td></tr>
+          <tr><td>~8 lb</td><td>3.3 + 4.4 lb plate</td></tr>
+          <tr><td>~10&ndash;12 lb</td><td>one each: 2.2 + 3.3 + 4.4 lb</td></tr>
+          <tr><td>~15 lb</td><td>two 4.4 lb + one 3.3 lb</td></tr>
+          <tr><td>~18&ndash;20 lb (near max)</td><td>most/all plates loaded on one side</td></tr>
+        </tbody>
+      </table>
+      <p class="copy" style="margin-top:14px;">Start light. Form first &mdash; add a plate next week, not this set.</p>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Warm-up &mdash; every workout day</h3>
+      <p class="copy">Arm circles &times;10 each direction &middot; leg swings &times;10/leg &middot; bodyweight squats &times;10 &middot; march in place 1 min. <span class="pill">5 min &middot; ~25 kcal</span></p>
+    </div>
+  </section>
+
+  <!-- 02 SCHEDULE -->
+  <section class="panel" data-panel="schedule">
+    <p class="panel-eyebrow">02 / The Week</p>
+    <h2 class="panel-title display">Schedule</h2>
+    <p class="panel-meta">4 cut days, 3 rest days &mdash; the hatched pieces don't get touched</p>
+
+    <div class="week-grid">
+      <div class="day-card"><div class="day-name display">Mon</div><div class="day-tag">STRENGTH A</div></div>
+      <div class="day-card"><div class="day-name display">Tue</div><div class="day-tag">CARDIO &middot; STEADY</div></div>
+      <div class="day-card rest"><div class="day-name display">Wed</div><div class="day-tag">REST</div></div>
+      <div class="day-card"><div class="day-name display">Thu</div><div class="day-tag">STRENGTH B</div></div>
+      <div class="day-card"><div class="day-name display">Fri</div><div class="day-tag">CARDIO &middot; INTERVALS</div></div>
+      <div class="day-card rest"><div class="day-name display">Sat</div><div class="day-tag">REST</div></div>
+      <div class="day-card rest"><div class="day-name display">Sun</div><div class="day-tag">REST</div></div>
+    </div>
+
+    <div class="block" style="margin-top:28px;">
+      <p class="copy">Rest days aren't filler &mdash; they're recovery, so the cut days actually land. Skipping them tends to cost more than it saves.</p>
+    </div>
+  </section>
+
+  <!-- 03 MONDAY -->
+  <section class="panel" data-panel="monday">
+    <p class="panel-eyebrow">03 / Monday</p>
+    <h2 class="panel-title display">Strength A</h2>
+    <p class="panel-meta">~45 min total &middot; ~270&ndash;300 kcal</p>
+
+    <table>
+      <thead><tr><th>Exercise</th><th class="num">Sets &times; Reps</th><th>Weight</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
+      <tbody>
+        <tr><td>Goblet squat (kettlebell config)</td><td class="num">3 &times; 12</td><td>12&ndash;15 lb total</td><td class="num">4 min</td><td class="num">~30</td></tr>
+        <tr><td>Bent-over dumbbell row</td><td class="num">3 &times; 12</td><td>8&ndash;10 lb / hand</td><td class="num">4 min</td><td class="num">~25</td></tr>
+        <tr><td>Dumbbell shoulder press</td><td class="num">3 &times; 10</td><td>6&ndash;8 lb / hand</td><td class="num">4 min</td><td class="num">~25</td></tr>
+        <tr><td>Romanian deadlift</td><td class="num">3 &times; 12</td><td>10&ndash;12 lb / hand</td><td class="num">4 min</td><td class="num">~30</td></tr>
+        <tr><td>Walking lunges</td><td class="num">3 &times; 10 / leg</td><td>5&ndash;8 lb / hand or bodyweight</td><td class="num">5 min</td><td class="num">~35</td></tr>
+        <tr><td>Bicep curl</td><td class="num">3 &times; 12</td><td>6&ndash;8 lb / hand</td><td class="num">3 min</td><td class="num">~20</td></tr>
+        <tr><td>Plank</td><td class="num">3 &times; 30 sec</td><td>bodyweight</td><td class="num">3 min</td><td class="num">~15</td></tr>
+        <tr><td>Cool-down stretch</td><td class="num">&mdash;</td><td>&mdash;</td><td class="num">5 min</td><td class="num">~20</td></tr>
+      </tbody>
+    </table>
+    <p class="copy" style="margin-top:16px;">Rest ~45&ndash;60 sec between sets, already folded into the times above.</p>
+  </section>
+
+  <!-- 04 TUESDAY -->
+  <section class="panel" data-panel="tuesday">
+    <p class="panel-eyebrow">04 / Tuesday</p>
+    <h2 class="panel-title display">Cardio &mdash; Steady</h2>
+    <p class="panel-meta">30&ndash;40 min &middot; ~190&ndash;250 kcal</p>
+
+    <table>
+      <thead><tr><th>Segment</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
+      <tbody>
+        <tr><td>Easy warm-up pace</td><td class="num">5 min</td><td class="num">~25</td></tr>
+        <tr><td>Brisk continuous walk, talking is a little harder than usual</td><td class="num">25&ndash;35 min</td><td class="num">~165&ndash;225</td></tr>
+      </tbody>
+    </table>
+    <p class="copy" style="margin-top:16px;">Use your open space, loop it or go out-and-back. Optional: a light 2&ndash;3 lb dumbbell in each hand for extra arm-swing burn &mdash; not required.</p>
+  </section>
+
+  <!-- 05 THURSDAY -->
+  <section class="panel" data-panel="thursday">
+    <p class="panel-eyebrow">05 / Thursday</p>
+    <h2 class="panel-title display">Strength B</h2>
+    <p class="panel-meta">~45 min total &middot; ~260&ndash;290 kcal</p>
+
+    <table>
+      <thead><tr><th>Exercise</th><th class="num">Sets &times; Reps</th><th>Weight</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
+      <tbody>
+        <tr><td>Sumo squat (one dumbbell, both hands)</td><td class="num">3 &times; 12</td><td>12&ndash;15 lb total</td><td class="num">4 min</td><td class="num">~30</td></tr>
+        <tr><td>Single-arm row</td><td class="num">3 &times; 12 / arm</td><td>8&ndash;10 lb</td><td class="num">4 min</td><td class="num">~25</td></tr>
+        <tr><td>Overhead triceps extension</td><td class="num">3 &times; 12</td><td>8&ndash;10 lb total</td><td class="num">3 min</td><td class="num">~20</td></tr>
+        <tr><td>Deadlift-to-high-pull</td><td class="num">3 &times; 10</td><td>8&ndash;10 lb / hand</td><td class="num">4 min</td><td class="num">~30</td></tr>
+        <tr><td>Lateral lunge</td><td class="num">3 &times; 10 / leg</td><td>5&ndash;8 lb / hand</td><td class="num">4 min</td><td class="num">~30</td></tr>
+        <tr><td>Hammer curl</td><td class="num">3 &times; 12</td><td>6&ndash;8 lb / hand</td><td class="num">3 min</td><td class="num">~20</td></tr>
+        <tr><td>Side plank</td><td class="num">2 &times; 20 sec / side</td><td>bodyweight</td><td class="num">2 min</td><td class="num">~10</td></tr>
+        <tr><td>Cool-down stretch</td><td class="num">&mdash;</td><td>&mdash;</td><td class="num">5 min</td><td class="num">~20</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 06 FRIDAY -->
+  <section class="panel" data-panel="friday">
+    <p class="panel-eyebrow">06 / Friday</p>
+    <h2 class="panel-title display">Cardio &mdash; Intervals</h2>
+    <p class="panel-meta">~35&ndash;40 min &middot; ~220&ndash;280 kcal</p>
+
+    <table>
+      <thead><tr><th>Segment</th><th>Pace</th><th class="num">Time</th><th class="num">Calories</th></tr></thead>
+      <tbody>
+        <tr><td>Warm-up</td><td>Easy</td><td class="num">5 min</td><td class="num">~25</td></tr>
+        <tr><td>Intervals: 6&ndash;8 rounds of 2 min brisk/fast + 1 min easy</td><td>Alternating</td><td class="num">18&ndash;24 min</td><td class="num">~150&ndash;200</td></tr>
+        <tr><td>Cool-down</td><td>Easy</td><td class="num">5 min</td><td class="num">~25</td></tr>
+      </tbody>
+    </table>
+    <p class="copy" style="margin-top:16px;">Intervals burn more per minute than steady walking and build cardio fitness faster &mdash; useful leverage for a beginner.</p>
+  </section>
+
+  <!-- 07 PROGRESSION -->
+  <section class="panel" data-panel="progression">
+    <p class="panel-eyebrow">07 / Eight Weeks</p>
+    <h2 class="panel-title display">Progression</h2>
+    <p class="panel-meta">How the load moves up as you go</p>
+
+    <table>
+      <thead><tr><th>Weeks</th><th>Strength days</th><th>Cardio days</th></tr></thead>
+      <tbody>
+        <tr><td>1&ndash;2</td><td>Lower end of weight ranges, clean form, 3 sets</td><td>Steady walk 30 min, intervals 30 min total</td></tr>
+        <tr><td>3&ndash;4</td><td>Add 2&ndash;3 lb per exercise where manageable</td><td>Add 5 min to each walk</td></tr>
+        <tr><td>5&ndash;6</td><td>4th set on squats + deadlifts, or reps to 15</td><td>Pick up pace, or find a slope if your space has one</td></tr>
+        <tr><td>7&ndash;8</td><td>Push toward upper end of weight ranges</td><td>Walks at 40&ndash;45 min; short jog intervals if comfortable</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 08 NOTES -->
+  <section class="panel" data-panel="notes">
+    <p class="panel-eyebrow">08 / Before You Start</p>
+    <h2 class="panel-title display">Notes</h2>
+    <p class="panel-meta">Weekly totals and the things worth remembering</p>
+
+    <div class="totals-row">
+      <div class="total-card"><span class="total-num display" id="statStrengthKcal">~560</span><span class="total-label">kcal / week &middot; strength</span></div>
+      <div class="total-card"><span class="total-num display" id="statCardioKcal">~470</span><span class="total-label">kcal / week &middot; cardio</span></div>
+      <div class="total-card"><span class="total-num display" id="statTotalKcal">~1,030</span><span class="total-label">kcal / week &middot; total burn</span></div>
+    </div>
+
+    <p class="copy">That's a real contribution, but a fraction of the ~6,500+ kcal/week deficit the 1.9 lb/week pace calls for. The rest comes from how you eat &mdash; a moderate, consistent reduction, not an extreme one.</p>
+
+    <ul class="tips">
+      <li>If a weight breaks your form before the set is done, drop down &mdash; no shame in it as a beginner.</li>
+      <li>Stop and rest on sharp pain. Normal muscle fatigue is fine; pain isn't.</li>
+      <li>Hydrate, and aim for 7&ndash;9 hours of sleep &mdash; both matter for fat loss and recovery.</li>
+    </ul>
+
+    <div class="stamp">Not medical advice &mdash; consult a physician</div>
+  </section>
+
+  <!-- 09 PROGRESS -->
+  <section class="panel" data-panel="progress">
+    <p class="panel-eyebrow">09 / Track It</p>
+    <h2 class="panel-title display">Progress</h2>
+    <p class="panel-meta">Upload a weight log, watch the trend against the goal line</p>
+
+    <div class="upload-box">
+      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+      <button class="btn" id="uploadBtn">Choose spreadsheet</button>
+      <span class="file-name" id="fileNameLabel"></span>
+      <p class="copy small">Two columns: <strong>Day</strong> (days since you started &mdash; or a <strong>Date</strong> column) and <strong>Weight</strong> (lb). Header names are flexible. .csv, .xlsx and .xls all work.</p>
+    </div>
+
+    <div class="error-msg" id="progressError" hidden></div>
+
+    <div class="totals-row" id="progressStats" hidden>
+      <div class="total-card"><span class="total-num display" id="statStart">&mdash;</span><span class="total-label">start weight</span></div>
+      <div class="total-card"><span class="total-num display" id="statLatest">&mdash;</span><span class="total-label">latest weight</span></div>
+      <div class="total-card"><span class="total-num display" id="statChange">&mdash;</span><span class="total-label">change so far</span></div>
+    </div>
+
+    <div class="chart-wrap" id="chartWrap" hidden>
+      <canvas id="weightChart" height="300"></canvas>
+    </div>
+
+    <button class="btn ghost" id="clearDataBtn" style="margin-top:18px;" hidden>Clear data</button>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+
+<script>
+  // ===================== Top ruler ticks =====================
+  const ruler = document.getElementById('rulerTop');
+  for (let i = 0; i <= 48; i += 4) {
+    const span = document.createElement('span');
+    span.textContent = i;
+    ruler.appendChild(span);
+  }
+
+  // ===================== Tabs =====================
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+
+  function activate(name) {
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.panel === name ? 'true' : 'false'));
+    panels.forEach(p => p.setAttribute('data-active', p.dataset.panel === name ? 'true' : 'false'));
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(tab.dataset.panel));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); tabs[(i + 1) % tabs.length].focus(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+    });
+  });
+
+  // ===================== Settings state =====================
+  const DEFAULT_SETTINGS = { sex:'male', age:18, weightLb:180, heightFt:5, heightIn:10, activity:'light', goalLb:15, goalWeeks:8 };
+  let settings = Object.assign({}, DEFAULT_SETTINGS);
+
+  const ACTIVITY_FACTORS = { sedentary:1.2, light:1.375, moderate:1.55, active:1.725 };
+
+  function computeStats(s){
+    const kg = s.weightLb * 0.453592;
+    const cm = (s.heightFt * 12 + s.heightIn) * 2.54;
+    const bmr = 10 * kg + 6.25 * cm - 5 * s.age + (s.sex === 'male' ? 5 : -161);
+    const tdee = bmr * ACTIVITY_FACTORS[s.activity];
+    const weeklyLossLb = s.goalLb / s.goalWeeks;
+    const dailyDeficit = weeklyLossLb * 3500 / 7;
+    const targetIntake = tdee - dailyDeficit;
+    return { bmr, tdee, weeklyLossLb, dailyDeficit, targetIntake };
+  }
+
+  function fmt(n){ return Math.round(n).toLocaleString(); }
+
+  function applyStatsToPage(){
+    const stats = computeStats(settings);
+
+    document.getElementById('statMaintenance').textContent = fmt(stats.tdee);
+    document.getElementById('statDeficit').textContent = fmt(stats.dailyDeficit);
+    document.getElementById('statTargetIntake').textContent = fmt(stats.targetIntake);
+    document.getElementById('statProtein').textContent = fmt(settings.weightLb * 0.85);
+
+    const paceNote = document.getElementById('paceNote');
+    if (stats.weeklyLossLb > 2) {
+      paceNote.textContent = 'This pace is well above the usual 1\u20132 lb/week guideline \u2014 strongly consider easing the timeline, and check with a doctor before starting.';
+    } else if (stats.weeklyLossLb > 1.2) {
+      paceNote.textContent = 'This pace sits above the usual 1\u20132 lb/week guideline \u2014 workable, but prioritize recovery and protein.';
+    } else {
+      paceNote.textContent = 'This pace sits comfortably inside the usual 1\u20132 lb/week guideline.';
+    }
+
+    document.getElementById('heroSub').innerHTML =
+      `${settings.age} / ${settings.heightFt}&prime;${settings.heightIn}&Prime; / ${settings.weightLb} lb &mdash; goal: &minus;${settings.goalLb} lb in ${settings.goalWeeks} weeks`;
+
+    const scale = settings.weightLb / DEFAULT_SETTINGS.weightLb;
+    const strengthKcal = Math.round(560 * scale);
+    const cardioKcal = Math.round(470 * scale);
+    document.getElementById('statStrengthKcal').textContent = '~' + strengthKcal.toLocaleString();
+    document.getElementById('statCardioKcal').textContent = '~' + cardioKcal.toLocaleString();
+    document.getElementById('statTotalKcal').textContent = '~' + (strengthKcal + cardioKcal).toLocaleString();
+
+    if (weightRows.length) renderChart();
+  }
+
+  function readSettingsFromForm(){
+    settings = {
+      sex: document.getElementById('inSex').value,
+      age: parseFloat(document.getElementById('inAge').value) || DEFAULT_SETTINGS.age,
+      weightLb: parseFloat(document.getElementById('inWeight').value) || DEFAULT_SETTINGS.weightLb,
+      heightFt: parseFloat(document.getElementById('inFt').value) || DEFAULT_SETTINGS.heightFt,
+      heightIn: parseFloat(document.getElementById('inIn').value) || DEFAULT_SETTINGS.heightIn,
+      activity: document.getElementById('inActivity').value,
+      goalLb: parseFloat(document.getElementById('inGoalLb').value) || DEFAULT_SETTINGS.goalLb,
+      goalWeeks: parseFloat(document.getElementById('inGoalWeeks').value) || DEFAULT_SETTINGS.goalWeeks,
+    };
+  }
+
+  function writeFormFromSettings(){
+    document.getElementById('inSex').value = settings.sex;
+    document.getElementById('inAge').value = settings.age;
+    document.getElementById('inWeight').value = settings.weightLb;
+    document.getElementById('inFt').value = settings.heightFt;
+    document.getElementById('inIn').value = settings.heightIn;
+    document.getElementById('inActivity').value = settings.activity;
+    document.getElementById('inGoalLb').value = settings.goalLb;
+    document.getElementById('inGoalWeeks').value = settings.goalWeeks;
+  }
+
+  // ===================== Settings drawer =====================
+  const gearBtn = document.getElementById('gearBtn');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+
+  function openDrawer(){
+    drawer.classList.add('open');
+    drawerOverlay.classList.add('open');
+    gearBtn.classList.add('spinning');
+    gearBtn.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+  function closeDrawer(){
+    drawer.classList.remove('open');
+    drawerOverlay.classList.remove('open');
+    gearBtn.classList.remove('spinning');
+    gearBtn.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  gearBtn.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+
+  document.getElementById('applySettings').addEventListener('click', () => {
+    readSettingsFromForm();
+    applyStatsToPage();
+    closeDrawer();
+  });
+  document.getElementById('resetSettings').addEventListener('click', () => {
+    settings = Object.assign({}, DEFAULT_SETTINGS);
+    writeFormFromSettings();
+    applyStatsToPage();
+  });
+
+  // ===================== Progress tab: upload + parse + chart =====================
+  let weightRows = [];   // [{day, weight}]
+  let chartInstance = null;
+
+  const fileInput = document.getElementById('fileInput');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const fileNameLabel = document.getElementById('fileNameLabel');
+  const progressError = document.getElementById('progressError');
+  const progressStats = document.getElementById('progressStats');
+  const chartWrap = document.getElementById('chartWrap');
+  const clearDataBtn = document.getElementById('clearDataBtn');
+
+  uploadBtn.addEventListener('click', () => fileInput.click());
+
+  function showError(msg){
+    progressError.textContent = msg;
+    progressError.hidden = false;
+  }
+  function hideError(){ progressError.hidden = true; }
+
+  function normKey(k){ return String(k).trim().toLowerCase().replace(/[^a-z]/g, ''); }
+
+  const DAY_KEYS = ['day','days','daynumber','dayssincestart','x'];
+  const WEIGHT_KEYS = ['weight','weightlb','weightlbs','lbs','lb','wt'];
+  const DATE_KEYS = ['date'];
+
+  function rowsToPoints(rows){
+    if (!rows || !rows.length) throw new Error('That file looks empty.');
+    const headers = Object.keys(rows[0]);
+    const dayHeader = headers.find(h => DAY_KEYS.includes(normKey(h)));
+    const weightHeader = headers.find(h => WEIGHT_KEYS.includes(normKey(h)));
+    const dateHeader = headers.find(h => DATE_KEYS.includes(normKey(h)));
+
+    if (!weightHeader) throw new Error('Couldn\u2019t find a weight column. Name it "Weight" (lb).');
+    if (!dayHeader && !dateHeader) throw new Error('Couldn\u2019t find a Day or Date column.');
+
+    let firstDate = null;
+    const points = [];
+    rows.forEach((row, idx) => {
+      const w = parseFloat(row[weightHeader]);
+      if (isNaN(w)) return;
+      let day;
+      if (dayHeader && row[dayHeader] !== null && row[dayHeader] !== '' && !isNaN(parseFloat(row[dayHeader]))) {
+        day = parseFloat(row[dayHeader]);
+      } else if (dateHeader && row[dateHeader]) {
+        const d = new Date(row[dateHeader]);
+        if (isNaN(d.getTime())) return;
+        if (firstDate === null) firstDate = d;
+        day = Math.round((d - firstDate) / 86400000);
+      } else {
+        day = idx;
+      }
+      points.push({ day, weight: w });
+    });
+    points.sort((a, b) => a.day - b.day);
+    if (!points.length) throw new Error('No valid weight values found in that file.');
+    return points;
+  }
+
+  function handleParsedRows(rows){
+    try {
+      weightRows = rowsToPoints(rows);
+      hideError();
+      renderChart();
+    } catch (err) {
+      weightRows = [];
+      chartWrap.hidden = true;
+      progressStats.hidden = true;
+      clearDataBtn.hidden = true;
+      showError(err.message || 'Could not read that file.');
+    }
+  }
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    fileNameLabel.textContent = file.name;
+    const isCsv = /\.csv$/i.test(file.name);
+
+    if (isCsv) {
+      if (typeof Papa === 'undefined') { showError('Spreadsheet parser failed to load \u2014 check your connection and try again.'); return; }
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        dynamicTyping: true,
+        complete: (res) => handleParsedRows(res.data),
+        error: () => showError('Could not read that CSV file.')
+      });
+    } else {
+      if (typeof XLSX === 'undefined') { showError('Spreadsheet parser failed to load \u2014 check your connection and try again.'); return; }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const data = new Uint8Array(ev.target.result);
+          const wb = XLSX.read(data, { type: 'array' });
+          const sheet = wb.Sheets[wb.SheetNames[0]];
+          const json = XLSX.utils.sheet_to_json(sheet, { defval: null });
+          handleParsedRows(json);
+        } catch (err) {
+          showError('Could not read that spreadsheet file.');
+        }
+      };
+      reader.onerror = () => showError('Could not read that file.');
+      reader.readAsArrayBuffer(file);
+    }
+  });
+
+  clearDataBtn.addEventListener('click', () => {
+    weightRows = [];
+    fileInput.value = '';
+    fileNameLabel.textContent = '';
+    chartWrap.hidden = true;
+    progressStats.hidden = true;
+    clearDataBtn.hidden = true;
+    hideError();
+  });
+
+  function renderChart(){
+    if (typeof Chart === 'undefined') { showError('Chart library failed to load \u2014 check your connection and try again.'); return; }
+    if (!weightRows.length) return;
+
+    const start = weightRows[0].weight;
+    const latest = weightRows[weightRows.length - 1].weight;
+    const change = latest - start;
+    document.getElementById('statStart').textContent = start.toFixed(1) + ' lb';
+    document.getElementById('statLatest').textContent = latest.toFixed(1) + ' lb';
+    document.getElementById('statChange').textContent = (change > 0 ? '+' : '') + change.toFixed(1) + ' lb';
+    progressStats.hidden = false;
+    chartWrap.hidden = false;
+    clearDataBtn.hidden = false;
+
+    const goalStart = settings.weightLb;
+    const goalEnd = settings.weightLb - settings.goalLb;
+    const goalDays = settings.goalWeeks * 7;
+    const goalLine = [{ x: 0, y: goalStart }, { x: goalDays, y: goalEnd }];
+
+    const actualPoints = weightRows.map(r => ({ x: r.day, y: r.weight }));
+
+    if (chartInstance) chartInstance.destroy();
+    const ctx = document.getElementById('weightChart').getContext('2d');
+    chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [
+          {
+            label: 'Goal trajectory',
+            data: goalLine,
+            borderColor: '#D9622B',
+            borderDash: [6, 5],
+            borderWidth: 2,
+            pointRadius: 0,
+            tension: 0,
+          },
+          {
+            label: 'Logged weight',
+            data: actualPoints,
+            borderColor: '#1B1B17',
+            backgroundColor: '#1B1B17',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            tension: 0.25,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'nearest', intersect: false },
+        plugins: {
+          legend: { labels: { font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' } },
+          tooltip: { titleFont: { family: 'Courier Prime' }, bodyFont: { family: 'Courier Prime' } }
+        },
+        scales: {
+          x: {
+            type: 'linear',
+            title: { display: true, text: 'Days since start', font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' },
+            grid: { color: '#2C5F4B' },
+            ticks: { font: { family: 'Courier Prime', size: 10 }, color: '#1B1B17' }
+          },
+          y: {
+            title: { display: true, text: 'Weight (lb)', font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' },
+            grid: { color: '#e8e1d0' },
+            ticks: { font: { family: 'Courier Prime', size: 10 }, color: '#1B1B17' }
+          }
+        }
+      }
+    });
+    document.getElementById('weightChart').style.height = '300px';
+  }
+
+  // Initial paint
+  writeFormFromSettings();
+  applyStatsToPage();
+</script>
+
+</body>
+</html>
