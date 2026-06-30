@@ -450,6 +450,45 @@
     padding:18px;
     margin-top:6px;
   }
+  .chart-container{
+    position:relative;
+    width:100%;
+    height:300px;
+  }
+  .chart-toggles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .line-toggle{
+    font-family:'Courier Prime', monospace;
+    font-size:11px;
+    letter-spacing:0.03em;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    background:transparent;
+    border:1px solid var(--mat-line-bold);
+    color:#5b554a;
+    padding:6px 11px;
+    cursor:pointer;
+    opacity:0.55;
+  }
+  .line-toggle .swatch{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    display:inline-block;
+    flex-shrink:0;
+  }
+  .line-toggle.active{
+    color:var(--ink);
+    border-color:var(--ink);
+    opacity:1;
+    background:var(--paper-dim);
+  }
+  .line-toggle:hover{opacity:1;}
 
   @media (max-width: 720px){
     .ruler-top span:nth-child(odd){display:none;}
@@ -571,19 +610,25 @@
     <span class="tab-num">02</span><span class="tab-label display" style="font-style:italic;">Schedule</span>
   </button>
   <button class="tab" role="tab" data-panel="strength" aria-selected="false">
-    <span class="tab-num">03</span><span class="tab-label display" style="font-style:italic;">Mon &middot; Thu &middot; Sat</span>
+    <span class="tab-num">03</span><span class="tab-label display" style="font-style:italic;">Mon &middot; Sat</span>
+  </button>
+  <button class="tab" role="tab" data-panel="legday" aria-selected="false">
+    <span class="tab-num">04</span><span class="tab-label display" style="font-style:italic;">Thu &middot; Leg Day</span>
   </button>
   <button class="tab" role="tab" data-panel="cardio" aria-selected="false">
-    <span class="tab-num">04</span><span class="tab-label display" style="font-style:italic;">Tue &middot; Fri &middot; Cardio</span>
+    <span class="tab-num">05</span><span class="tab-label display" style="font-style:italic;">Tue &middot; Fri &middot; Cardio</span>
   </button>
   <button class="tab" role="tab" data-panel="rest" aria-selected="false">
-    <span class="tab-num">05</span><span class="tab-label display" style="font-style:italic;">Wed &middot; Sun &middot; Rest</span>
+    <span class="tab-num">06</span><span class="tab-label display" style="font-style:italic;">Wed &middot; Sun &middot; Rest</span>
   </button>
   <button class="tab" role="tab" data-panel="notes" aria-selected="false">
-    <span class="tab-num">06</span><span class="tab-label display" style="font-style:italic;">Notes</span>
+    <span class="tab-num">07</span><span class="tab-label display" style="font-style:italic;">Notes</span>
   </button>
   <button class="tab" role="tab" data-panel="progress" aria-selected="false">
-    <span class="tab-num">07</span><span class="tab-label display" style="font-style:italic;">Progress</span>
+    <span class="tab-num">08</span><span class="tab-label display" style="font-style:italic;">Progress</span>
+  </button>
+  <button class="tab" role="tab" data-panel="weightlog" aria-selected="false">
+    <span class="tab-num">09</span><span class="tab-label display" style="font-style:italic;">Weight Log</span>
   </button>
 </nav>
 
@@ -636,7 +681,7 @@
       <div class="day-card"><div class="day-name display">Mon</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
       <div class="day-card"><div class="day-name display">Tue</div><div class="day-tag">CARDIO &mdash; JOG</div></div>
       <div class="day-card rest"><div class="day-name display">Wed</div><div class="day-tag">REST</div></div>
-      <div class="day-card"><div class="day-name display">Thu</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
+      <div class="day-card"><div class="day-name display">Thu</div><div class="day-tag">STRENGTH &mdash; LEG DAY</div></div>
       <div class="day-card"><div class="day-name display">Fri</div><div class="day-tag">CARDIO &mdash; JOG</div></div>
       <div class="day-card"><div class="day-name display">Sat</div><div class="day-tag">STRENGTH &mdash; ARMS &amp; SHOULDERS</div></div>
       <div class="day-card rest"><div class="day-name display">Sun</div><div class="day-tag">REST</div></div>
@@ -649,7 +694,7 @@
 
   <!-- 03 STRENGTH — MON / THU / SAT -->
   <section class="panel" data-panel="strength">
-    <p class="panel-eyebrow">03 / Monday &middot; Thursday &middot; Saturday</p>
+    <p class="panel-eyebrow">03 / Monday &middot; Saturday</p>
     <h2 class="panel-title display">Strength &mdash; Arms &amp; Shoulders</h2>
     <p class="panel-meta">~35&ndash;45 min total &middot; ~300&ndash;450 kcal &middot; rest 30&ndash;40 sec between sets &middot; move continuously</p>
 
@@ -761,9 +806,154 @@
     </div>
   </section>
 
-  <!-- 04 CARDIO — TUE / FRI -->
+  <!-- 04 LEG DAY — THU -->
+  <section class="panel" data-panel="legday">
+    <p class="panel-eyebrow">04 / Thursday</p>
+    <h2 class="panel-title display">Leg Day</h2>
+    <p class="panel-meta">~40&ndash;50 min total &middot; rest 45&ndash;60 sec between sets &middot; move continuously</p>
+
+    <div class="block">
+      <h3 class="block-title display">Warm-Up <span class="pill">5 min</span></h3>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th class="num">Reps / Time</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Bodyweight squats</td><td class="num">15</td></tr>
+          <tr><td>2</td><td>Leg swings</td><td class="num">10 each leg</td></tr>
+          <tr><td>3</td><td>Hip circles</td><td class="num">10</td></tr>
+          <tr><td>4</td><td>Walking in place</td><td class="num">1 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">1. Goblet Squats <em style="font-size:11px;">&mdash; kettlebell config or one dumbbell</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb &times; 12</td>
+            <td class="num">12 lb &times; 12</td>
+            <td class="num">14 lb &times; 12</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">2. Romanian Deadlifts <em style="font-size:11px;">&mdash; two dumbbells</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb each</td>
+            <td class="num">12 lb each</td>
+            <td class="num">14 lb each</td>
+            <td class="num">12</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">3. Reverse Lunges <em style="font-size:11px;">&mdash; two dumbbells</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb each</td>
+            <td class="num">12 lb each</td>
+            <td class="num">14 lb each</td>
+            <td class="num">10 each leg</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">4. Dumbbell Step-Ups <em style="font-size:11px;">&mdash; sturdy bench or stair</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb each</td>
+            <td class="num">12 lb each</td>
+            <td class="num">14 lb each</td>
+            <td class="num">10 each leg</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">5. Sumo Squats <em style="font-size:11px;">&mdash; one dumbbell held vertically</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb</td>
+            <td class="num">12 lb</td>
+            <td class="num">14 lb</td>
+            <td class="num">12</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">6. Standing Calf Raises <em style="font-size:11px;">&mdash; hold dumbbells</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb each</td>
+            <td class="num">12 lb each</td>
+            <td class="num">14 lb each</td>
+            <td class="num">15</td>
+            <td class="num">45&ndash;60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">7. Glute Bridge <em style="font-size:11px;">&mdash; one dumbbell resting on hips</em></h3>
+      <table>
+        <thead><tr><th class="num">Set 1</th><th class="num">Set 2</th><th class="num">Set 3</th><th class="num">Reps</th><th class="num">Rest</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">10 lb</td>
+            <td class="num">12 lb</td>
+            <td class="num">14 lb</td>
+            <td class="num">15</td>
+            <td class="num">60 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="block-title display">Cooldown <span class="pill">5 min</span></h3>
+      <p class="copy">30 seconds each.</p>
+      <table>
+        <thead><tr><th>#</th><th>Stretch</th><th class="num">Time</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Hamstring stretch</td><td class="num">30 sec</td></tr>
+          <tr><td>2</td><td>Quad stretch</td><td class="num">30 sec</td></tr>
+          <tr><td>3</td><td>Hip flexor stretch</td><td class="num">30 sec</td></tr>
+          <tr><td>4</td><td>Calf stretch</td><td class="num">30 sec</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 CARDIO — TUE / FRI -->
   <section class="panel" data-panel="cardio">
-    <p class="panel-eyebrow">04 / Tuesday &middot; Friday</p>
+    <p class="panel-eyebrow">05 / Tuesday &middot; Friday</p>
     <h2 class="panel-title display">Cardio &mdash; Jog</h2>
     <p class="panel-meta">~35 min total &middot; ~<span id="cardioKcalDisplay">270&ndash;400</span> kcal</p>
 
@@ -780,7 +970,7 @@
 
   <!-- 05 REST — WED / SUN -->
   <section class="panel" data-panel="rest">
-    <p class="panel-eyebrow">05 / Wednesday &middot; Sunday</p>
+    <p class="panel-eyebrow">06 / Wednesday &middot; Sunday</p>
     <h2 class="panel-title display">Rest</h2>
     <p class="panel-meta">Full recovery &mdash; no structured exercise</p>
 
@@ -799,12 +989,12 @@
 
   <!-- 06 NOTES -->
   <section class="panel" data-panel="notes">
-    <p class="panel-eyebrow">06 / Before You Start</p>
+    <p class="panel-eyebrow">07 / Before You Start</p>
     <h2 class="panel-title display">Notes</h2>
     <p class="panel-meta">Weekly totals and the things worth remembering</p>
 
     <div class="totals-row">
-      <div class="total-card"><span class="total-num display" id="statStrengthKcal">~1,050</span><span class="total-label">kcal / week &middot; strength (3&times;)</span></div>
+      <div class="total-card"><span class="total-num display" id="statStrengthKcal">~1,050</span><span class="total-label">kcal / week &middot; strength (3&times;, incl. leg day)</span></div>
       <div class="total-card"><span class="total-num display" id="statCardioKcal">~600</span><span class="total-label">kcal / week &middot; cardio (2&times;)</span></div>
       <div class="total-card"><span class="total-num display" id="statTotalKcal">~1,650</span><span class="total-label">kcal / week &middot; total burn</span></div>
     </div>
@@ -823,9 +1013,9 @@
 
   <!-- 07 PROGRESS -->
   <section class="panel" data-panel="progress">
-    <p class="panel-eyebrow">07 / Track It</p>
+    <p class="panel-eyebrow">08 / Track It</p>
     <h2 class="panel-title display">Progress</h2>
-    <p class="panel-meta">Upload a weight log, watch the trend against the goal line</p>
+    <p class="panel-meta">Upload a weight log, watch the trend against the goal line and your current pace</p>
 
     <div class="upload-box">
       <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
@@ -843,10 +1033,57 @@
     </div>
 
     <div class="chart-wrap" id="chartWrap" hidden>
-      <canvas id="weightChart" height="300"></canvas>
+      <div class="chart-toggles" id="chartToggles">
+        <button class="line-toggle active" id="toggleGoal" data-series="goal">
+          <span class="swatch" style="background:#D9622B;"></span>Goal trajectory
+        </button>
+        <button class="line-toggle active" id="toggleTrend" data-series="trend">
+          <span class="swatch" style="background:#2E6E9E;"></span>Current pace (best fit)
+        </button>
+        <button class="line-toggle active" id="toggleActual" data-series="actual">
+          <span class="swatch" style="background:#1B1B17;"></span>Logged weight
+        </button>
+      </div>
+      <div class="chart-container"><canvas id="weightChart"></canvas></div>
     </div>
 
     <button class="btn ghost" id="clearDataBtn" style="margin-top:18px;" hidden>Clear data</button>
+  </section>
+
+  <!-- 09 WEIGHT LOG (EXERCISE WEIGHTS) -->
+  <section class="panel" data-panel="weightlog">
+    <p class="panel-eyebrow">09 / Track The Lifts</p>
+    <h2 class="panel-title display">Weight Log</h2>
+    <p class="panel-meta">Upload a CSV of the dumbbell weights you used per exercise, per session</p>
+
+    <div class="upload-box">
+      <input type="file" id="exFileInput" accept=".csv,.xlsx,.xls" hidden>
+      <button class="btn" id="exUploadBtn">Choose spreadsheet</button>
+      <span class="file-name" id="exFileNameLabel"></span>
+      <p class="copy small">One row per session. Include a <strong>Date</strong> (or <strong>Day</strong>) column, plus one column per exercise &mdash; e.g. <strong>Dumbbell Curls</strong>, <strong>Hammer Curls</strong>, <strong>Overhead Triceps Extension</strong>, <strong>Triceps Kickbacks</strong>, <strong>Dumbbell Shoulder Press</strong>, <strong>Lateral Raises</strong>, <strong>Goblet Squats</strong>, <strong>Romanian Deadlifts</strong>, <strong>Reverse Lunges</strong>, <strong>Step-Ups</strong>, <strong>Sumo Squats</strong>, <strong>Calf Raises</strong>, <strong>Glute Bridge</strong> &mdash; whatever you trained that day. Use the heaviest weight (lb) you hit for each exercise that session. Header names are flexible, blank cells are fine. .csv, .xlsx and .xls all work.</p>
+    </div>
+
+    <div class="error-msg" id="exError" hidden></div>
+
+    <div class="block" id="exTableWrap" hidden>
+      <h3 class="block-title display">Logged Sessions</h3>
+      <div style="overflow-x:auto;">
+        <table id="exTable">
+          <thead><tr id="exTableHead"></tr></thead>
+          <tbody id="exTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block" id="exChartPickWrap" hidden>
+      <h3 class="block-title display">Exercise Trend</h3>
+      <div class="chart-toggles" id="exExerciseToggles"></div>
+      <div class="chart-wrap" style="margin-top:6px;">
+        <canvas id="exChart" height="280"></canvas>
+      </div>
+    </div>
+
+    <button class="btn ghost" id="exClearBtn" style="margin-top:18px;" hidden>Clear data</button>
   </section>
 
 </main>
@@ -1057,21 +1294,60 @@
       const w = parseFloat(row[weightHeader]);
       if (isNaN(w)) return;
       let day;
-      if (dayHeader && row[dayHeader] !== null && row[dayHeader] !== '' && !isNaN(parseFloat(row[dayHeader]))) {
-        day = parseFloat(row[dayHeader]);
-      } else if (dateHeader && row[dateHeader]) {
+      let dateObj = null;
+      if (dateHeader && row[dateHeader]) {
         const d = new Date(row[dateHeader]);
-        if (isNaN(d.getTime())) return;
-        if (firstDate === null) firstDate = d;
-        day = Math.round((d - firstDate) / 86400000);
-      } else {
-        day = idx;
+        if (!isNaN(d.getTime())) {
+          dateObj = d;
+          if (firstDate === null) firstDate = d;
+          day = Math.round((d - firstDate) / 86400000);
+        }
       }
-      points.push({ day, weight: w });
+      if (day === undefined) {
+        if (dayHeader && row[dayHeader] !== null && row[dayHeader] !== '' && !isNaN(parseFloat(row[dayHeader]))) {
+          day = parseFloat(row[dayHeader]);
+        } else {
+          day = idx;
+        }
+      }
+      points.push({ day, weight: w, dateObj });
     });
     points.sort((a, b) => a.day - b.day);
     if (!points.length) throw new Error('No valid weight values found in that file.');
+
+    // Fill in a synthetic date for each point (anchored to today minus days-from-latest)
+    // so tooltips always show a date even when the file only has a Day column.
+    const lastDay = points[points.length - 1].day;
+    const today = new Date();
+    points.forEach(p => {
+      if (!p.dateObj) {
+        const synth = new Date(today);
+        synth.setDate(synth.getDate() - (lastDay - p.day));
+        p.dateObj = synth;
+      }
+    });
     return points;
+  }
+
+  function formatDateLabel(d){
+    if (!d) return '';
+    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  // Simple linear regression (least squares) -> {slope, intercept}
+  function linearRegression(points){
+    const n = points.length;
+    if (n < 2) return null;
+    let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+    points.forEach(p => {
+      sumX += p.day; sumY += p.weight;
+      sumXY += p.day * p.weight; sumXX += p.day * p.day;
+    });
+    const denom = (n * sumXX - sumX * sumX);
+    if (denom === 0) return null;
+    const slope = (n * sumXY - sumX * sumY) / denom;
+    const intercept = (sumY - slope * sumX) / n;
+    return { slope, intercept };
   }
 
   function handleParsedRows(rows){
@@ -1149,9 +1425,24 @@
     const goalStart = settings.weightLb;
     const goalEnd = settings.weightLb - settings.goalLb;
     const goalDays = settings.goalWeeks * 7;
-    const goalLine = [{ x: 0, y: goalStart }, { x: goalDays, y: goalEnd }];
+    const goalLine = [
+      { x: 0, y: goalStart, dateObj: weightRows[0].dateObj },
+      { x: goalDays, y: goalEnd, dateObj: null }
+    ];
 
-    const actualPoints = weightRows.map(r => ({ x: r.day, y: r.weight }));
+    const actualPoints = weightRows.map(r => ({ x: r.day, y: r.weight, dateObj: r.dateObj }));
+
+    // Best-fit trend line: project current pace out to the goal end date (or last point, whichever is later)
+    const reg = linearRegression(weightRows);
+    let trendLine = [];
+    if (reg) {
+      const trendEndDay = Math.max(goalDays, weightRows[weightRows.length - 1].day + 7);
+      const firstDay = weightRows[0].day;
+      trendLine = [
+        { x: firstDay, y: reg.slope * firstDay + reg.intercept, dateObj: weightRows[0].dateObj },
+        { x: trendEndDay, y: reg.slope * trendEndDay + reg.intercept, dateObj: null }
+      ];
+    }
 
     if (chartInstance) chartInstance.destroy();
     const ctx = document.getElementById('weightChart').getContext('2d');
@@ -1160,6 +1451,7 @@
       data: {
         datasets: [
           {
+            key: 'goal',
             label: 'Goal trajectory',
             data: goalLine,
             borderColor: '#D9622B',
@@ -1169,6 +1461,17 @@
             tension: 0,
           },
           {
+            key: 'trend',
+            label: 'Current pace (best fit)',
+            data: trendLine,
+            borderColor: '#2E6E9E',
+            borderDash: [2, 3],
+            borderWidth: 2,
+            pointRadius: 0,
+            tension: 0,
+          },
+          {
+            key: 'actual',
             label: 'Logged weight',
             data: actualPoints,
             borderColor: '#1B1B17',
@@ -1185,8 +1488,23 @@
         maintainAspectRatio: false,
         interaction: { mode: 'nearest', intersect: false },
         plugins: {
-          legend: { labels: { font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' } },
-          tooltip: { titleFont: { family: 'Courier Prime' }, bodyFont: { family: 'Courier Prime' } }
+          legend: { display: false },
+          tooltip: {
+            titleFont: { family: 'Courier Prime' },
+            bodyFont: { family: 'Courier Prime' },
+            callbacks: {
+              title: (items) => {
+                if (!items.length) return '';
+                const raw = items[0].raw;
+                if (raw && raw.dateObj) return formatDateLabel(raw.dateObj);
+                return 'Day ' + items[0].parsed.x;
+              },
+              label: (item) => {
+                const name = item.dataset.label;
+                return name + ': ' + item.parsed.y.toFixed(1) + ' lb';
+              }
+            }
+          }
         },
         scales: {
           x: {
@@ -1203,7 +1521,274 @@
         }
       }
     });
-    document.getElementById('weightChart').style.height = '300px';
+    // fixed height handled by .chart-container
+
+    // Re-apply toggle states (visible/hidden) after rebuilding the chart
+    document.querySelectorAll('.line-toggle').forEach(btn => {
+      const key = btn.dataset.series;
+      const dsIndex = chartInstance.data.datasets.findIndex(d => d.key === key);
+      if (dsIndex === -1) return;
+      const isActive = btn.classList.contains('active');
+      chartInstance.setDatasetVisibility(dsIndex, isActive);
+    });
+    chartInstance.update();
+  }
+
+  document.querySelectorAll('.line-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      if (!chartInstance) return;
+      const key = btn.dataset.series;
+      const dsIndex = chartInstance.data.datasets.findIndex(d => d.key === key);
+      if (dsIndex === -1) return;
+      const isActive = btn.classList.contains('active');
+      chartInstance.setDatasetVisibility(dsIndex, isActive);
+      chartInstance.update();
+    });
+  });
+
+  // ===================== Weight Log tab: per-exercise CSV upload =====================
+  let exRows = [];        // [{day, dateObj, exercises: {name: weight}}]
+  let exExerciseNames = [];
+  let exChartInstance = null;
+  let exActiveExercise = null;
+
+  const exFileInput = document.getElementById('exFileInput');
+  const exUploadBtn = document.getElementById('exUploadBtn');
+  const exFileNameLabel = document.getElementById('exFileNameLabel');
+  const exErrorEl = document.getElementById('exError');
+  const exTableWrap = document.getElementById('exTableWrap');
+  const exTableHead = document.getElementById('exTableHead');
+  const exTableBody = document.getElementById('exTableBody');
+  const exChartPickWrap = document.getElementById('exChartPickWrap');
+  const exExerciseToggles = document.getElementById('exExerciseToggles');
+  const exClearBtn = document.getElementById('exClearBtn');
+
+  exUploadBtn.addEventListener('click', () => exFileInput.click());
+
+  function exShowError(msg){ exErrorEl.textContent = msg; exErrorEl.hidden = false; }
+  function exHideError(){ exErrorEl.hidden = true; }
+
+  const EX_NON_EXERCISE_KEYS = ['day','days','daynumber','dayssincestart','date','x'];
+
+  function exRowsToData(rows){
+    if (!rows || !rows.length) throw new Error('That file looks empty.');
+    const headers = Object.keys(rows[0]);
+    const dayHeader = headers.find(h => DAY_KEYS.includes(normKey(h)));
+    const dateHeader = headers.find(h => DATE_KEYS.includes(normKey(h)));
+    if (!dayHeader && !dateHeader) throw new Error('Couldn\u2019t find a Day or Date column.');
+
+    const exerciseHeaders = headers.filter(h => !EX_NON_EXERCISE_KEYS.includes(normKey(h)));
+    if (!exerciseHeaders.length) throw new Error('No exercise columns found \u2014 add a column per exercise with the weight used.');
+
+    let firstDate = null;
+    const data = [];
+    rows.forEach((row, idx) => {
+      let day, dateObj = null;
+      if (dateHeader && row[dateHeader]) {
+        const d = new Date(row[dateHeader]);
+        if (!isNaN(d.getTime())) {
+          dateObj = d;
+          if (firstDate === null) firstDate = d;
+          day = Math.round((d - firstDate) / 86400000);
+        }
+      }
+      if (day === undefined) {
+        if (dayHeader && row[dayHeader] !== null && row[dayHeader] !== '' && !isNaN(parseFloat(row[dayHeader]))) {
+          day = parseFloat(row[dayHeader]);
+        } else {
+          day = idx;
+        }
+      }
+      const exercises = {};
+      let hasAny = false;
+      exerciseHeaders.forEach(h => {
+        const v = parseFloat(row[h]);
+        if (!isNaN(v)) { exercises[h] = v; hasAny = true; }
+      });
+      if (!hasAny) return;
+      data.push({ day, dateObj, exercises });
+    });
+    data.sort((a, b) => a.day - b.day);
+    if (!data.length) throw new Error('No valid exercise weights found in that file.');
+
+    const lastDay = data[data.length - 1].day;
+    const today = new Date();
+    data.forEach(p => {
+      if (!p.dateObj) {
+        const synth = new Date(today);
+        synth.setDate(synth.getDate() - (lastDay - p.day));
+        p.dateObj = synth;
+      }
+    });
+
+    return { data, exerciseHeaders };
+  }
+
+  function exHandleParsedRows(rows){
+    try {
+      const result = exRowsToData(rows);
+      exRows = result.data;
+      exExerciseNames = result.exerciseHeaders;
+      exHideError();
+      exRenderTable();
+      exRenderToggles();
+      exActiveExercise = exExerciseNames[0] || null;
+      exRenderChart();
+    } catch (err) {
+      exRows = [];
+      exExerciseNames = [];
+      exTableWrap.hidden = true;
+      exChartPickWrap.hidden = true;
+      exClearBtn.hidden = true;
+      exShowError(err.message || 'Could not read that file.');
+    }
+  }
+
+  exFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    exFileNameLabel.textContent = file.name;
+    const isCsv = /\.csv$/i.test(file.name);
+
+    if (isCsv) {
+      if (typeof Papa === 'undefined') { exShowError('Spreadsheet parser failed to load \u2014 check your connection and try again.'); return; }
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        dynamicTyping: true,
+        complete: (res) => exHandleParsedRows(res.data),
+        error: () => exShowError('Could not read that CSV file.')
+      });
+    } else {
+      if (typeof XLSX === 'undefined') { exShowError('Spreadsheet parser failed to load \u2014 check your connection and try again.'); return; }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const data = new Uint8Array(ev.target.result);
+          const wb = XLSX.read(data, { type: 'array' });
+          const sheet = wb.Sheets[wb.SheetNames[0]];
+          const json = XLSX.utils.sheet_to_json(sheet, { defval: null });
+          exHandleParsedRows(json);
+        } catch (err) {
+          exShowError('Could not read that spreadsheet file.');
+        }
+      };
+      reader.onerror = () => exShowError('Could not read that file.');
+      reader.readAsArrayBuffer(file);
+    }
+  });
+
+  exClearBtn.addEventListener('click', () => {
+    exRows = [];
+    exExerciseNames = [];
+    exActiveExercise = null;
+    exFileInput.value = '';
+    exFileNameLabel.textContent = '';
+    exTableWrap.hidden = true;
+    exChartPickWrap.hidden = true;
+    exClearBtn.hidden = true;
+    exHideError();
+    if (exChartInstance) { exChartInstance.destroy(); exChartInstance = null; }
+  });
+
+  function exRenderTable(){
+    if (!exRows.length) { exTableWrap.hidden = true; return; }
+    exTableHead.innerHTML = '<th>Date</th>' + exExerciseNames.map(n => `<th class="num">${n}</th>`).join('');
+    exTableBody.innerHTML = exRows.map(r => {
+      const cells = exExerciseNames.map(n => {
+        const v = r.exercises[n];
+        return `<td class="num">${v !== undefined ? v.toFixed(1) + ' lb' : '&mdash;'}</td>`;
+      }).join('');
+      return `<tr><td>${formatDateLabel(r.dateObj)}</td>${cells}</tr>`;
+    }).join('');
+    exTableWrap.hidden = false;
+    exClearBtn.hidden = false;
+  }
+
+  const EX_TOGGLE_COLORS = ['#D9622B', '#2E6E9E', '#1B1B17', '#5b8c5a', '#9c5fb0', '#c9952c', '#3d8e8e', '#b0533f'];
+
+  function exRenderToggles(){
+    exExerciseToggles.innerHTML = exExerciseNames.map((n, i) => {
+      const color = EX_TOGGLE_COLORS[i % EX_TOGGLE_COLORS.length];
+      return `<button class="line-toggle${i === 0 ? ' active' : ''}" data-exercise="${n.replace(/"/g, '&quot;')}">
+        <span class="swatch" style="background:${color};"></span>${n}
+      </button>`;
+    }).join('');
+    exChartPickWrap.hidden = false;
+
+    exExerciseToggles.querySelectorAll('.line-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        exExerciseToggles.querySelectorAll('.line-toggle').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        exActiveExercise = btn.dataset.exercise;
+        exRenderChart();
+      });
+    });
+  }
+
+  function exRenderChart(){
+    if (typeof Chart === 'undefined') { exShowError('Chart library failed to load \u2014 check your connection and try again.'); return; }
+    if (!exRows.length || !exActiveExercise) return;
+
+    const idx = exExerciseNames.indexOf(exActiveExercise);
+    const color = EX_TOGGLE_COLORS[idx % EX_TOGGLE_COLORS.length];
+
+    const points = exRows
+      .filter(r => r.exercises[exActiveExercise] !== undefined)
+      .map(r => ({ x: r.day, y: r.exercises[exActiveExercise], dateObj: r.dateObj }));
+
+    if (exChartInstance) exChartInstance.destroy();
+    const ctx = document.getElementById('exChart').getContext('2d');
+    exChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: exActiveExercise,
+          data: points,
+          borderColor: color,
+          backgroundColor: color,
+          borderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.25,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'nearest', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            titleFont: { family: 'Courier Prime' },
+            bodyFont: { family: 'Courier Prime' },
+            callbacks: {
+              title: (items) => {
+                if (!items.length) return '';
+                const raw = items[0].raw;
+                return raw && raw.dateObj ? formatDateLabel(raw.dateObj) : 'Day ' + items[0].parsed.x;
+              },
+              label: (item) => item.dataset.label + ': ' + item.parsed.y.toFixed(1) + ' lb'
+            }
+          }
+        },
+        scales: {
+          x: {
+            type: 'linear',
+            title: { display: true, text: 'Days since start', font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' },
+            grid: { color: '#2C5F4B' },
+            ticks: { font: { family: 'Courier Prime', size: 10 }, color: '#1B1B17' }
+          },
+          y: {
+            title: { display: true, text: 'Weight used (lb)', font: { family: 'Courier Prime', size: 11 }, color: '#1B1B17' },
+            grid: { color: '#e8e1d0' },
+            ticks: { font: { family: 'Courier Prime', size: 10 }, color: '#1B1B17' }
+          }
+        }
+      }
+    });
+    document.getElementById('exChart').style.height = '280px';
   }
 
   // Initial paint
