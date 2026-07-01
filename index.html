@@ -450,10 +450,13 @@
     padding:18px;
     margin-top:6px;
   }
-  .chart-container{
-    position:relative;
-    width:100%;
-    height:300px;
+  .chart-wrap canvas{
+    display:block;
+    width:100% !important;
+    height:300px !important;
+  }
+  #exChart{
+    height:280px !important;
   }
   .chart-toggles{
     display:flex;
@@ -1044,7 +1047,7 @@
           <span class="swatch" style="background:#1B1B17;"></span>Logged weight
         </button>
       </div>
-      <div class="chart-container"><canvas id="weightChart"></canvas></div>
+      <canvas id="weightChart"></canvas>
     </div>
 
     <button class="btn ghost" id="clearDataBtn" style="margin-top:18px;" hidden>Clear data</button>
@@ -1079,7 +1082,7 @@
       <h3 class="block-title display">Exercise Trend</h3>
       <div class="chart-toggles" id="exExerciseToggles"></div>
       <div class="chart-wrap" style="margin-top:6px;">
-        <canvas id="exChart" height="280"></canvas>
+        <canvas id="exChart"></canvas>
       </div>
     </div>
 
@@ -1521,7 +1524,6 @@
         }
       }
     });
-    // fixed height handled by .chart-container
 
     // Re-apply toggle states (visible/hidden) after rebuilding the chart
     document.querySelectorAll('.line-toggle').forEach(btn => {
@@ -1788,12 +1790,76 @@
         }
       }
     });
-    document.getElementById('exChart').style.height = '280px';
+  }
+
+  // ===================== localStorage persistence =====================
+  const LS_WEIGHT_CSV  = 'cuttingplan_weight_csv';
+  const LS_WEIGHT_NAME = 'cuttingplan_weight_name';
+  const LS_EX_CSV      = 'cuttingplan_ex_csv';
+  const LS_EX_NAME     = 'cuttingplan_ex_name';
+
+  function saveWeightCsv(csvText, name) {
+    try { localStorage.setItem(LS_WEIGHT_CSV, csvText); localStorage.setItem(LS_WEIGHT_NAME, name); } catch(e) {}
+  }
+  function clearWeightCsv() {
+    try { localStorage.removeItem(LS_WEIGHT_CSV); localStorage.removeItem(LS_WEIGHT_NAME); } catch(e) {}
+  }
+  function saveExCsv(csvText, name) {
+    try { localStorage.setItem(LS_EX_CSV, csvText); localStorage.setItem(LS_EX_NAME, name); } catch(e) {}
+  }
+  function clearExCsv() {
+    try { localStorage.removeItem(LS_EX_CSV); localStorage.removeItem(LS_EX_NAME); } catch(e) {}
+  }
+
+  // Intercept file inputs early (capture phase) to save raw text before the existing parse listeners run
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = (ev) => { try { saveWeightCsv(ev.target.result, file.name); } catch(ex) {} };
+    r.readAsText(file);
+  }, true);
+
+  exFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = (ev) => { try { saveExCsv(ev.target.result, file.name); } catch(ex) {} };
+    r.readAsText(file);
+  }, true);
+
+  // Also clear localStorage when the user presses Clear
+  clearDataBtn.addEventListener('click', clearWeightCsv);
+  exClearBtn.addEventListener('click', clearExCsv);
+
+  // Restore saved CSVs on page load
+  function restoreFromStorage() {
+    const weightCsv  = (() => { try { return localStorage.getItem(LS_WEIGHT_CSV);  } catch(e) { return null; } })();
+    const weightName = (() => { try { return localStorage.getItem(LS_WEIGHT_NAME); } catch(e) { return null; } })();
+    const exCsv      = (() => { try { return localStorage.getItem(LS_EX_CSV);      } catch(e) { return null; } })();
+    const exName     = (() => { try { return localStorage.getItem(LS_EX_NAME);     } catch(e) { return null; } })();
+
+    if (weightCsv && weightName && typeof Papa !== 'undefined') {
+      fileNameLabel.textContent = weightName + '\u2002\u2014\u2002restored';
+      Papa.parse(weightCsv, {
+        header: true, skipEmptyLines: true, dynamicTyping: true,
+        complete: (res) => handleParsedRows(res.data)
+      });
+    }
+
+    if (exCsv && exName && typeof Papa !== 'undefined') {
+      exFileNameLabel.textContent = exName + '\u2002\u2014\u2002restored';
+      Papa.parse(exCsv, {
+        header: true, skipEmptyLines: true, dynamicTyping: true,
+        complete: (res) => exHandleParsedRows(res.data)
+      });
+    }
   }
 
   // Initial paint
   writeFormFromSettings();
   applyStatsToPage();
+  restoreFromStorage();
 </script>
 
 </body>
